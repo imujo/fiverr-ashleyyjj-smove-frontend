@@ -1,0 +1,50 @@
+.signup{
+    padding-left: 20%;
+    height: 100%;
+
+    &__title{
+        font-size: 3em;
+        color: $blue;
+    }
+
+    &__subtitle{
+        font-size: 1.7em;
+        font-weight: 500;
+    }
+
+    &__form{
+        width: 70%;
+        margin: 40px 0;
+
+        &__section{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        &__item{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            &-narrow{
+                width: 45%;
+            }
+        }
+
+        &__label{
+            font-size: 1em;
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+
+        &__input{
+            height: 50px;
+            width: 100%;
+            background-color: white;
+            border: 1px solid $lightBlue;
+            background-color: $lightBlue
+
+        }
+    }
+}
