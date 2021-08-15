@@ -1,0 +1,22 @@
+@mixin alert($color) {
+  color: $color;
+  background-color: lighten($color, 45%);
+}
+
+.alert {
+  width: calc(100% - 10px);
+  margin: 0 5px;
+  height: 40px;
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  &-error {
+    @include alert(rgb(170, 2, 2));
+  }
+  &-success {
+    @include alert(rgb(41, 170, 2));
+  }
+}

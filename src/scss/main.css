@@ -59,6 +59,34 @@ button {
   }
 }
 
+.alert {
+  width: calc(100% - 10px);
+  margin: 0 5px;
+  height: 40px;
+  position: absolute;
+  bottom: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+}
+
+.alert-error {
+  color: #aa0202;
+  background-color: #fe9494;
+}
+
+.alert-success {
+  color: #29aa02;
+  background-color: #acfe94;
+}
+
 .nav {
   height: 80px;
   width: 100%;
@@ -225,6 +253,8 @@ button {
   font-size: 1em;
   font-weight: 300;
   margin-bottom: 5px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .signup__form__input {
@@ -237,6 +267,8 @@ button {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0 5px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
   font-size: 1.3em;
 }
 
@@ -257,8 +289,13 @@ button {
           align-items: center;
   gap: 10px;
   color: #92aecd;
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+
+.signup__form__requirementsitem div {
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
 }
 
 .signup__form__requirementsitem-active {
@@ -315,6 +352,15 @@ button {
   text-decoration: underline;
   -webkit-text-decoration-color: #1E2F42;
           text-decoration-color: #1E2F42;
+}
+
+.signup__form__error {
+  color: red;
+}
+
+.signup__form__error input,
+.signup__form__error div {
+  border: 1px red solid;
 }
 
 .signup__heading {
@@ -393,7 +439,7 @@ button {
   }
   .signup__form__submit-primary {
     margin-top: 25px;
-    width: 200px;
+    width: 100%;
     height: 28px;
     font-size: 0.8em;
   }

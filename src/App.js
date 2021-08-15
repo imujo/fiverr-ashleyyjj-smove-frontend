@@ -8,7 +8,8 @@ import UserSetup from './pages/UserSetup'
 
 function App() {
   return (
-    <Switch>
+    <div>
+      <Switch>
 
 
       <Route path='/signup' >
@@ -24,7 +25,11 @@ function App() {
       </Route>
 
 
-    </Switch>
+      </Switch>
+      <div className="alert">
+        <p>There has been an error</p>
+      </div>
+    </div>
   );
 }
 
