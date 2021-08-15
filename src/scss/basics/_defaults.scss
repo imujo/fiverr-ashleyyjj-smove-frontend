@@ -1,36 +1,50 @@
-
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    font-family: 'Poppins';
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $blue;
 }
 
-input, button, submit {
-    border: none;
-    background-color: transparent;
+input,
+button,
+select,
+textarea {
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.setupPage{
-    height: calc(100vh - 80px);
+.setupPage {
+  height: calc(100vh - 80px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &__body {
+    height: 85%;
     width: 100%;
-    display: flex;
+
+    display: grid;
+    grid-template-columns: 30% 70%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .setupPage {
+    justify-content: center;
     align-items: center;
-    
-    &__body{
-        height: 65%;
-        width: 100%;
-        
-        display: grid;
-        grid-template-columns: 30% 70%;
+    &__body {
+      display: block;
     }
+  }
 }

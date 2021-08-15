@@ -1,30 +1,46 @@
-.nav{
-    height: 80px;
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 40px;
-    box-sizing: border-box;
+.nav {
+  height: 80px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
 
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  &__logo {
+    font-size: 2.7em;
+    font-weight: 500;
+    color: $orange;
+    width: fill-available;
+  }
 
-    &__logo{
-        font-size: 2.7em;
-        font-weight: 500;
-        color: $orange;
-        width: fill-available;
+  &__button {
+    width: 150px;
+    height: 35px;
+    background-color: $orange;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav {
+    height: 40px;
+
+    &__logo {
+      font-size: 1.8em;
     }
 
-    &__button{
-        width: 150px;
-        height: 35px;
-        background-color: $orange;
-        border-radius: 0.5em;
-        color: white;
-        font-weight: 700;
-        font-size: 1em;
+    &__button {
+      width: 90px;
+      height: 21px;
+      border-radius: 4px;
+      font-size: 0.7em;
     }
+  }
 }

@@ -1,10 +1,10 @@
 // BASICS
-@import "./basics/defaults";
 @import "./basics/colors";
+@import "./basics/defaults";
 
 // COMPONENTS
 @import "./components/nav";
 @import "./components/setupSidebar";
 
 // PAGES
-@import "./pages/signup"
+@import "./pages/signup";
