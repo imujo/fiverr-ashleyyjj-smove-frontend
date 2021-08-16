@@ -1,24 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'
+import { useHistory } from "react-router-dom";
+
 
 const UserSetup = () => {
 
+    let history = useHistory();
     const [imA, setImA] = useState('')
     const [movingWith, setMovingWith] = useState('')
     const [budget, setBudget] = useState(0)
 
-    const [submited, setsubmited] = useState(false)
+    const [submited, setSubmited] = useState(false)
 
 
     const submit = () => {
-        setsubmited(true)
-        console.log(!imA, !movingWith, !budget)
-        if (!imA || !movingWith || !budget){
-            console.log('You didnt fill all fields')
+        setSubmited(true)
+
+        if ( imA && budget && movingWith){
+            history.push('/ratingsetup')
+        }else{
+            setTimeout(()=> setSubmited(false), 3000)
         }
-        setTimeout(()=> setsubmited(false), 3000)
     }
+
+    const [canContinue, setCanContinue] = useState(false)
+
+    useEffect(() => {
+        
+        if (imA && movingWith && budget){
+            setCanContinue(true)
+        }else {
+            setCanContinue(false)
+        }
+
+    }, [imA, movingWith, budget])
+
+
     
 
     return (
@@ -37,15 +55,15 @@ const UserSetup = () => {
                             <p className={` userSetup__form__label ${submited && !imA ? 'userSetup__form__label-error' : ''}`}>I am a:</p>
                             <div className="userSetup__form__section">
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary ${imA === 'First time buyer' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${imA === 'First time buyer' ? 'setup__button-secondary-active' : ''}`}
                                     onClick={()=> setImA('First time buyer')}
                                     >First time buyer</button>
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary ${imA === 'Home buyer' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${imA === 'Home buyer' ? 'setup__button-secondary-active' : ''}`}
                                     onClick={()=> setImA('Home buyer')}
                                     >Home buyer</button>
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary ${imA === 'Renter' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${imA === 'Renter' ? 'setup__button-secondary-active' : ''}`}
                                     onClick={()=> setImA('Renter')}
                                     >Renter</button>
                             </div>
@@ -53,15 +71,15 @@ const UserSetup = () => {
                             <p className={`userSetup__form__label ${submited && !movingWith ? 'userSetup__form__label-error' : ''}`}>Are you moving in with anyone?</p>
                             <div className="userSetup__form__section">
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary ${movingWith === 'By myself' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${movingWith === 'By myself' ? 'setup__button-secondary-active' : ''}`}
                                     onClick={()=> setMovingWith('By myself')}
                                     >By myself</button>
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary ${movingWith === 'Partner' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${movingWith === 'Partner' ? 'setup__button-secondary-active' : ''}`}
                                     onClick={()=>  setMovingWith('Partner')}
                                     >Partner</button>
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary ${movingWith === 'Friends' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${movingWith === 'Friends' ? 'setup__button-secondary-active' : ''}`}
                                     onClick={()=> setMovingWith('Friends')}
                                     >Friends</button>
                             </div>
@@ -73,7 +91,10 @@ const UserSetup = () => {
                             </div>
                             
                             <button 
-                                className='userSetup__form__button setup__button setup__button-primary userSetup__form__submit'
+                                className={`
+                                    userSetup__form__button setup__button setup__button-primary userSetup__form__submit
+                                    ${canContinue ? 'setup__button-primary-enabled' : 'setup__button-primary-disabled'}
+                                `}
                                 onClick={submit}
                                 >Next, set up preferences</button>
                         </div>

@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'  
+import { useHistory } from "react-router-dom";
+
 
 const RatingSetup = () => {
+
+    let history = useHistory();
 
     const ratingOptions = ['Onddde', 'Twasdfso', 'Thrasdfee', 'Oasdfne', 'Tasdwo', 'Thdsafree', 'One', 'Two', 'Three']
 
@@ -43,10 +47,7 @@ const RatingSetup = () => {
     const [errorRatingOption, setErrorRatingOption] = useState('')
 
     const allSelected = (ratingOption) => {
-        console.log('all')
         setErrorRatingOption(ratingOption)
-
-
         setTimeout(()=> setErrorRatingOption(''), 100)
     }
 
@@ -59,6 +60,17 @@ const RatingSetup = () => {
         }
 
     }, [ratingOption1, ratingOption2, ratingOption3, ratingOption4])
+
+    
+    const submit = () => {
+
+        console.log('submit')
+
+        if ( ratingOption1 && ratingOption2 && ratingOption3 && ratingOption4){
+            console.log('can submit')
+            history.push('/setupcongrats')
+        }
+    }
 
     
     
@@ -82,8 +94,8 @@ const RatingSetup = () => {
                                             <button 
                                                 key={i}
                                                 className={`
-                                                    ratingSetup__button ratingSetup__button-category
-                                                    ${categorySelected === category ? 'ratingSetup__button-active' : ''}
+                                                    setup__button setup__button-secondary setup__button-secondary-fixed
+                                                    ${categorySelected === category ? 'setup__button-secondary setup__button-secondary-active' : ''}
                                                 `}
                                                 onClick={()=> setCategorySelected(category)}
                                             >{category}</button>
@@ -102,9 +114,9 @@ const RatingSetup = () => {
                                                     <button 
                                                         key={i} 
                                                         className={`
-                                                            ratingSetup__button ratingSetup__button-ratingOption
-                                                            ${isSelected(ratingOption) ? 'ratingSetup__button-active' : ''}
-                                                            ${errorRatingOption === ratingOption ? 'ratingSetup__button-error' : ''}
+                                                            setup__button setup__button-secondary setup__button-secondary-flexible
+                                                            ${isSelected(ratingOption) ? 'setup__button-secondary setup__button-secondary-active' : ''}
+                                                            ${errorRatingOption === ratingOption ? 'setup__button-secondary setup__button-secondary-error' : ''}
                                                         `}
                                                         onClick={()=> selectOption(ratingOption)}
                                                     >{ratingOption}</button>
@@ -124,6 +136,7 @@ const RatingSetup = () => {
                                             value={ratingOption1}
                                             onChange={(e)=> setRatingOption1(e.target.value)}
                                         />
+                                        <p onClick={()=>setRatingOption1('')}>X</p>
                                     </div>
                                     <div className="ratingSetup__select">
                                         <h4 className='ratingSetup__select__number'>2</h4>
@@ -133,6 +146,7 @@ const RatingSetup = () => {
                                             value={ratingOption2}
                                             onChange={(e)=> setRatingOption2(e.target.value)}
                                         />
+                                        <p onClick={()=>setRatingOption2('')}>X</p>
                                     </div>
                                     <div className="ratingSetup__select">
                                         <h4 className='ratingSetup__select__number'>3</h4>
@@ -142,6 +156,7 @@ const RatingSetup = () => {
                                             value={ratingOption3}
                                             onChange={(e)=> setRatingOption3(e.target.value)}
                                         />
+                                        <p onClick={()=>setRatingOption3('')}>X</p>
                                     </div>
                                     <div className="ratingSetup__select">
                                         <h4 className='ratingSetup__select__number'>4</h4>
@@ -151,6 +166,7 @@ const RatingSetup = () => {
                                             value={ratingOption4}
                                             onChange={(e)=> setRatingOption4(e.target.value)}
                                         />
+                                        <p onClick={()=>setRatingOption4('')}>X</p>
                                     </div>
                                 </section>
                             </div>
@@ -159,6 +175,7 @@ const RatingSetup = () => {
                                     setup__button setup__button-primary ratingSetup__submit
                                     ${canContinue ? 'setup__button-primary-enabled' : 'setup__button-primary-disabled'}
                                 `}
+                                onClick={submit}
                             >Finish</button>
                         </div>
                     </div>

@@ -9,39 +9,6 @@
     margin-bottom: 15px;
   }
 
-  &__button {
-    background-color: $lightGrey;
-    color: $blue;
-    font-weight: 600;
-    font-size: 1.1em;
-    border-radius: 0.3em;
-    transition: color 0.1s, background-color 0.1s;
-
-    &:hover,
-    &-active {
-      background-color: $blue;
-      color: white;
-    }
-
-    &-active {
-      transform: scale(0.95);
-    }
-
-    &-category {
-      height: 45px;
-      width: 135px;
-    }
-
-    &-ratingOption {
-      padding: 8px 20px;
-      margin: 5px 10px;
-    }
-
-    &-error {
-      animation: buttonError 0.1s linear;
-    }
-  }
-
   &__categoriesList {
     display: flex;
     justify-content: space-between;
@@ -74,7 +41,7 @@
   &__select {
     width: 70%;
     height: 40px;
-    border: 2px solid $orange;
+    box-shadow: 0px 2px 5px rgba(black, 0.4);
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -82,28 +49,35 @@
     padding-left: 10px;
     font-size: 1.2em;
     min-width: 200px;
+    position: relative;
 
     input {
       padding-left: 10px;
       font-size: 0.8em;
       font-weight: 600;
       color: $blue;
+      width: calc(100% - 40px);
+
+      &::placeholder {
+        color: rgb(211, 211, 211);
+        font-weight: 400;
+      }
+    }
+
+    p {
+      position: absolute;
+      right: 10px;
+      font-weight: 300;
+      font-size: 0.8em;
+      cursor: pointer;
     }
   }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1200px) {
   .ratingSetup {
-    &__button {
-      &-category {
-        height: 35px;
-        width: 105px;
-        font-size: 0.95em;
-      }
-
-      &-ratingOption {
-        font-size: 0.85em;
-      }
+    &__categoriesList {
+      max-width: 650px;
     }
   }
 }
@@ -132,23 +106,13 @@
       display: grid;
       grid-template-columns: 50% 50%;
       gap: 5px;
-    }
-
-    &__button {
-      &-category {
-        width: 100%;
-      }
-
-      &-ratingOption {
-        width: 100%;
-      }
+      max-width: none;
     }
   }
 }
 
 @keyframes buttonError {
   0% {
-    // border: none;
     transform: translateX(0);
   }
   25% {
@@ -162,6 +126,5 @@
   }
   100% {
     transform: translateX(0);
-    // border: 2px red solid;
   }
 }

@@ -5,6 +5,7 @@ import {
 import Signup from './pages/Signup'
 import RatingSetup from './pages/RatingSetup'
 import UserSetup from './pages/UserSetup'
+import SetupCongrats from './pages/SetupCongrats'
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
 
       <Route path='/ratingsetup' >
         <RatingSetup />
+      </Route>
+      
+      <Route path='/setupcongrats' >
+        <SetupCongrats />
       </Route>
 
 

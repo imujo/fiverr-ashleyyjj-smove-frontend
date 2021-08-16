@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'
+import { useHistory } from "react-router-dom";
 
 const Signup = () => {
+
+    let history = useHistory();
 
     const [fName, setFName] = useState('')
     const [lName, setLName] = useState('')
@@ -25,11 +28,31 @@ const Signup = () => {
         regExLetters.test(pswrd) ? setContainUpper(true) : setContainUpper(false)
     }, [pswrd])
 
+    const validatePassword = (pswrd) => {
+
+        let regExNumber = new RegExp('(?=.*[0-9])')
+        let regExLetters = new RegExp('(?=.*[A-Z])')
+
+        if (pswrd.length >= 6 && regExNumber.test(pswrd) && regExLetters.test(pswrd)){
+            return true
+        }else{
+            return false
+        }
+
+
+    }
+    
+
     const submit = (e) => {
         e.preventDefault();
 
         setSubmited(true)
-        setTimeout(()=> setSubmited(false), 3000)
+
+        if (fName && lName && email && validatePassword(pswrd)){
+            history.push('/usersetup')
+        }else{
+            setTimeout(()=> setSubmited(false), 3000)
+        }
     }
     
 
