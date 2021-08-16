@@ -38,15 +38,15 @@ const Signup = () => {
             <Nav>
                 <button className='nav__button'>Login</button>
             </Nav>
-            <div className="setupPage">
-                <div className="setupPage__body">
+            <div className="setup__page">
+                <div className="setup__page__body">
 
                     <SetupSidebar />
 
 
-                    <div className="signup">
-                        <h1 className="signup__title">Hey, let's get started</h1>
-                        <h2 className='signup__subtitle'>Create an account in just a few steps.</h2>
+                    <div className="signup setup">
+                        <h1 className="setup__title">Hey, let's get started</h1>
+                        <h2 className='setup__subtitle'>Create an account in just a few steps.</h2>
 
 
 
@@ -124,15 +124,15 @@ const Signup = () => {
                                 </div>
                             </div>
 
-                            <h3 className='signup__heading'>Receive Email updates?</h3>
-                            <p className='signup__text'>Receive checklists, information on home services for when you move and monthly updates.</p>
+                            <h3 className='setup__heading'>Receive Email updates?</h3>
+                            <p className='setup__text'>Receive checklists, information on home services for when you move and monthly updates.</p>
 
-                            <input className='signup__form__submit signup__form__submit-primary' type="submit" value="Yes,get started now" />
+                            <input className='setup__button setup__button-primary signup__form__submit' type="submit" value="Yes, get started now" />
 
-                            <input className='signup__form__submit signup__form__submit-secondary' type="submit" value="No thanks, get started now" />
+                            <input className='setup__button setup__button-text' type="submit" value="No thanks, get started now" />
                         </form>
 
-                        <p className='signup__text-small'>By clicking get started, you agree to smove’s <span className='hyperlink'>Terms of Use</span>, <span className='hyperlink'>Cookies</span>  and <span className='hyperlink'>Privacy Policy</span>.</p>
+                        <p className='setup__text-small'>By clicking get started, you agree to smove’s <span className='hyperlink'>Terms of Use</span>, <span className='hyperlink'>Cookies</span>  and <span className='hyperlink'>Privacy Policy</span>.</p>
 
 
                     </div>

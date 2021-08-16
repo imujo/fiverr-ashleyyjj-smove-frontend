@@ -1,20 +1,4 @@
 .signup {
-  margin-left: 20%;
-  height: 100%;
-  width: 55%;
-  display: flex;
-  flex-direction: column;
-
-  &__title {
-    font-size: 3em;
-    color: $blue;
-  }
-
-  &__subtitle {
-    font-size: 1.5em;
-    font-weight: 500;
-  }
-
   &__form {
     margin: 40px 0;
     display: flex;
@@ -95,35 +79,6 @@
       }
     }
 
-    &__submit {
-      cursor: pointer;
-      margin: 0 auto;
-
-      &-primary {
-        width: 315px;
-        height: 45px;
-        background-color: $orange;
-        color: white;
-        font-size: 1.3em;
-        font-weight: 800;
-        border-radius: 6px;
-        box-shadow: 0 0 7px rgba(black, 0.4);
-        margin-top: 40px;
-        transition: transform 0.1s ease-out;
-
-        &:hover {
-          transform: scale(1.015);
-        }
-      }
-      &-secondary {
-        margin-top: 20px;
-        color: $blue;
-        font-family: "Poppins", Arial, Helvetica, sans-serif;
-        text-decoration: underline;
-        text-decoration-color: $blue;
-      }
-    }
-
     &__error {
       input,
       div {
@@ -131,28 +86,10 @@
       }
       color: red;
     }
-  }
-  &__heading {
-    font-size: 1em;
-    font-weight: 600;
-    margin-top: 15px;
-  }
-  &__text {
-    font-size: 0.8em;
-    font-weight: 300;
 
-    &-small {
-      font-size: 0.4em;
+    &__submit {
       margin: 0 auto;
-      max-width: 500px;
-      text-align: center;
-
-      .hyperlink {
-        font-weight: 500;
-        text-decoration: underline;
-        text-decoration-color: $blue;
-        cursor: pointer;
-      }
+      margin-top: 40px;
     }
   }
 }
@@ -174,57 +111,16 @@
         width: 8px;
       }
     }
-
-    &__title {
-      font-size: 2.5em;
-    }
-
-    &__subtitle {
-      font-size: 1.3em;
-    }
-  }
-}
-
-@media (max-width: 1200px) {
-  .signup {
-    margin: 0 auto;
-    width: 60%;
   }
 }
 
 @media (max-width: 700px) {
   .signup {
-    width: 75%;
-
-    &__title {
-      font-size: 2.1em;
-    }
-    &__subtitle {
-      font-size: 1.1em;
-    }
-    &__text {
-      font-size: 0.5em;
-    }
-    &__heading {
-      font-size: 0.8em;
-    }
-
     &__form {
       &__input {
         font-size: 0.8em;
       }
-      &__submit {
-        &-primary {
-          margin-top: 25px;
-          width: 100%;
-          height: 28px;
-          font-size: 0.8em;
-        }
-        &-secondary {
-          margin-top: 10px;
-          font-size: 0.7em;
-        }
-      }
+
       &__inputsection-password {
         flex-direction: column;
         width: 100%;
@@ -248,13 +144,6 @@
 
 @media (max-width: 500px) {
   .signup {
-    &__title {
-      font-size: 1.4em;
-    }
-    &__subtitle {
-      font-size: 0.9em;
-    }
-
     &__form {
       &__label {
         font-size: 0.5em;

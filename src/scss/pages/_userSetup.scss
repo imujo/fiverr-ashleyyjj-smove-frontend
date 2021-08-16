@@ -1,0 +1,84 @@
+.userSetup {
+  &__form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &__label {
+      margin-top: 25px;
+      margin-bottom: 15px;
+    }
+
+    &__section {
+      display: flex;
+      justify-content: space-between;
+
+      &-budget {
+        display: flex;
+        align-items: center;
+        position: relative;
+        i {
+          position: absolute;
+          left: 10px;
+          font-size: 1.3em;
+          color: $orange;
+        }
+      }
+    }
+
+    &__submit {
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+
+    &__budget {
+      width: 30%;
+      height: 45px;
+      border: 2px solid $orange;
+      font-size: 1.3em;
+      box-sizing: border-box;
+      padding-left: 30px;
+      color: $blue;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .userSetup {
+    &__form {
+      margin-top: 20px;
+      &__section {
+        flex-direction: column;
+        gap: 20px;
+
+        &-budget {
+          justify-content: center;
+        }
+      }
+
+      &__button {
+        width: 100%;
+      }
+
+      &__budget {
+        width: 100%;
+        font-size: 0.9em;
+      }
+
+      &__submit {
+        margin-bottom: 100px;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .userSetup {
+    &__form {
+      &__budget {
+        height: 30px;
+      }
+    }
+  }
+}
