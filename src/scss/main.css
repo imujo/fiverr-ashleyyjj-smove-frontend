@@ -51,6 +51,7 @@ input[type="number"] {
       -ms-flex-align: center;
           align-items: center;
   opacity: 0;
+  pointer-events: none;
 }
 
 .alert-error {
@@ -548,6 +549,12 @@ input[type="number"] {
 .userSetup__form__label {
   margin-top: 25px;
   margin-bottom: 15px;
+  -webkit-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+}
+
+.userSetup__form__label-error {
+  color: red;
 }
 
 .userSetup__form__section {
@@ -585,6 +592,7 @@ input[type="number"] {
   width: 30%;
   height: 45px;
   border: 2px solid #FF5F58;
+  border-radius: 4px;
   font-size: 1.3em;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

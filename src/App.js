@@ -26,9 +26,9 @@ function App() {
 
 
       </Switch>
-      {/* <div className="alert">
+      <div className="alert">
         <p>There has been an error</p>
-      </div> */}
+      </div>
     </div>
   );
 }

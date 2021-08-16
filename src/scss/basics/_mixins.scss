@@ -13,6 +13,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
+  pointer-events: none;
   &-error {
     @include alert(rgb(170, 2, 2));
   }
