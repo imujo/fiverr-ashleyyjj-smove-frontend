@@ -34,7 +34,7 @@ const UserSetup = () => {
 
                         <div className="userSetup__form">
 
-                            <p className={`userSetup__form__label ${submited && !imA ? 'userSetup__form__label-error' : ''}`}>I am a:</p>
+                            <p className={` userSetup__form__label ${submited && !imA ? 'userSetup__form__label-error' : ''}`}>I am a:</p>
                             <div className="userSetup__form__section">
                                 <button 
                                     className={`userSetup__form__button setup__button setup__button-secondary ${imA === 'First time buyer' ? 'setup__button-secondary-active' : ''}`}

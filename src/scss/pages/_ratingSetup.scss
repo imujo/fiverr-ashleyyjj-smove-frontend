@@ -1,0 +1,167 @@
+.ratingSetup {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  &__label {
+    margin-bottom: 15px;
+  }
+
+  &__button {
+    background-color: $lightGrey;
+    color: $blue;
+    font-weight: 600;
+    font-size: 1.1em;
+    border-radius: 0.3em;
+    transition: color 0.1s, background-color 0.1s;
+
+    &:hover,
+    &-active {
+      background-color: $blue;
+      color: white;
+    }
+
+    &-active {
+      transform: scale(0.95);
+    }
+
+    &-category {
+      height: 45px;
+      width: 135px;
+    }
+
+    &-ratingOption {
+      padding: 8px 20px;
+      margin: 5px 10px;
+    }
+
+    &-error {
+      animation: buttonError 0.1s linear;
+    }
+  }
+
+  &__categoriesList {
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+  }
+
+  &__ratingOptionsList {
+    width: 100%;
+  }
+
+  &__section {
+    display: grid;
+    grid-template-columns: 55% auto;
+    gap: 50px;
+
+    &-select {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  &__submit {
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+
+  &__select {
+    width: 70%;
+    height: 40px;
+    border: 2px solid $orange;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 10px;
+    font-size: 1.2em;
+    min-width: 200px;
+
+    input {
+      padding-left: 10px;
+      font-size: 0.8em;
+      font-weight: 600;
+      color: $blue;
+    }
+  }
+}
+
+@media (max-width: 1500px) {
+  .ratingSetup {
+    &__button {
+      &-category {
+        height: 35px;
+        width: 105px;
+        font-size: 0.95em;
+      }
+
+      &-ratingOption {
+        font-size: 0.85em;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .ratingSetup {
+    &__section {
+      grid-template-columns: 100%;
+
+      &-select {
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+
+    &__select {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    &__submit {
+      margin-bottom: 100px;
+    }
+
+    &__categoriesList {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      gap: 5px;
+    }
+
+    &__button {
+      &-category {
+        width: 100%;
+      }
+
+      &-ratingOption {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@keyframes buttonError {
+  0% {
+    // border: none;
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+    // border: 2px red solid;
+  }
+}
