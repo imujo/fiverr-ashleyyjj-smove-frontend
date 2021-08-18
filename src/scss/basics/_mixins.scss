@@ -21,3 +21,102 @@
     @include alert(rgb(41, 170, 2));
   }
 }
+
+.btn {
+  cursor: pointer;
+  border-radius: 0.3em;
+  transition: all 0.1s ease-out;
+  font-size: 1.1em;
+
+  &-error {
+    animation: buttonError 0.1s linear;
+  }
+
+  &-hover:hover {
+    transform: scale(1.015);
+  }
+
+  &-shadow {
+    box-shadow: 0 0 7px rgba(black, 0.4);
+  }
+
+  &-fill {
+    font-weight: 700;
+
+    &-orange {
+      background-color: $orange;
+      color: white;
+
+      &-disabled {
+        background-color: desaturate($orange, 69%);
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+
+      &-active {
+        transform: scale(0.95);
+      }
+    }
+
+    &-blue {
+      background-color: $lightGrey;
+      color: $blue;
+
+      &:hover,
+      &-active {
+        background-color: $blue;
+        color: white;
+      }
+
+      &-active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  &-outline {
+    font-weight: 600;
+
+    &-orange {
+      border: 2px solid $orange;
+      color: $orange;
+
+      &:hover,
+      &-active {
+        background-color: $orange;
+        color: white;
+      }
+
+      &-active {
+        transform: scale(0.95);
+      }
+
+      &-disabled:hover {
+        background-color: white;
+        color: $orange;
+      }
+    }
+  }
+
+  &-flexible {
+    padding: 8px 20px;
+  }
+}
+
+@keyframes buttonError {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

@@ -6,6 +6,7 @@ import Signup from './pages/Signup'
 import RatingSetup from './pages/RatingSetup'
 import UserSetup from './pages/UserSetup'
 import SetupCongrats from './pages/SetupCongrats'
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
       
       <Route path='/setupcongrats' >
         <SetupCongrats />
+      </Route>
+
+      <Route path='/:page?' >
+        <Dashboard />
       </Route>
 
 

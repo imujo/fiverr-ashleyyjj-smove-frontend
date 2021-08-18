@@ -55,15 +55,15 @@ const UserSetup = () => {
                             <p className={` userSetup__form__label ${submited && !imA ? 'userSetup__form__label-error' : ''}`}>I am a:</p>
                             <div className="userSetup__form__section">
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${imA === 'First time buyer' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button btn btn-fill btn-fill-blue ${imA === 'First time buyer' ? 'btn-fill-blue-active' : ''}`}
                                     onClick={()=> setImA('First time buyer')}
                                     >First time buyer</button>
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${imA === 'Home buyer' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button btn btn-fill btn-fill-blue ${imA === 'Home buyer' ? 'btn-fill-blue-active' : ''}`}
                                     onClick={()=> setImA('Home buyer')}
                                     >Home buyer</button>
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${imA === 'Renter' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button btn btn-fill btn-fill-blue ${imA === 'Renter' ? 'btn-fill-blue-active' : ''}`}
                                     onClick={()=> setImA('Renter')}
                                     >Renter</button>
                             </div>
@@ -71,15 +71,15 @@ const UserSetup = () => {
                             <p className={`userSetup__form__label ${submited && !movingWith ? 'userSetup__form__label-error' : ''}`}>Are you moving in with anyone?</p>
                             <div className="userSetup__form__section">
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${movingWith === 'By myself' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button btn btn-fill btn-fill-blue ${movingWith === 'By myself' ? 'btn-fill-blue-active' : ''}`}
                                     onClick={()=> setMovingWith('By myself')}
                                     >By myself</button>
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${movingWith === 'Partner' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button btn btn-fill btn-fill-blue ${movingWith === 'Partner' ? 'btn-fill-blue-active' : ''}`}
                                     onClick={()=>  setMovingWith('Partner')}
                                     >Partner</button>
                                 <button 
-                                    className={`userSetup__form__button setup__button setup__button-secondary setup__button-secondary-fixed-lg ${movingWith === 'Friends' ? 'setup__button-secondary-active' : ''}`}
+                                    className={`userSetup__form__button btn btn-fill btn-fill-blue ${movingWith === 'Friends' ? 'btn-fill-blue-active' : ''}`}
                                     onClick={()=> setMovingWith('Friends')}
                                     >Friends</button>
                             </div>
@@ -92,8 +92,8 @@ const UserSetup = () => {
                             
                             <button 
                                 className={`
-                                    userSetup__form__button setup__button setup__button-primary userSetup__form__submit
-                                    ${canContinue ? 'setup__button-primary-enabled' : 'setup__button-primary-disabled'}
+                                    userSetup__form__submit btn btn-fill btn-fill-orange btn-shadow
+                                    ${canContinue ? '' : 'btn-fill-orange-disabled'}
                                 `}
                                 onClick={submit}
                                 >Next, set up preferences</button>

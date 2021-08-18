@@ -94,8 +94,8 @@ const RatingSetup = () => {
                                             <button 
                                                 key={i}
                                                 className={`
-                                                    setup__button setup__button-secondary setup__button-secondary-fixed
-                                                    ${categorySelected === category ? 'setup__button-secondary setup__button-secondary-active' : ''}
+                                                    btn btn-fill btn-fill-blue ratingSetup__button
+                                                    ${categorySelected === category ? 'btn-fill-blue-active' : ''}
                                                 `}
                                                 onClick={()=> setCategorySelected(category)}
                                             >{category}</button>
@@ -114,9 +114,10 @@ const RatingSetup = () => {
                                                     <button 
                                                         key={i} 
                                                         className={`
-                                                            setup__button setup__button-secondary setup__button-secondary-flexible
-                                                            ${isSelected(ratingOption) ? 'setup__button-secondary setup__button-secondary-active' : ''}
-                                                            ${errorRatingOption === ratingOption ? 'setup__button-secondary setup__button-secondary-error' : ''}
+                                                            btn btn-fill btn-fill-blue
+                                                            btn-flexible ratingSetup__button-rating
+                                                            ${isSelected(ratingOption) ? 'btn-fill-blue-active' : ''}
+                                                            ${errorRatingOption === ratingOption ? 'btn-error' : ''}
                                                         `}
                                                         onClick={()=> selectOption(ratingOption)}
                                                     >{ratingOption}</button>

@@ -4,6 +4,11 @@
     flex-direction: column;
     width: 100%;
 
+    &__button {
+      width: 30%;
+      height: 45px;
+    }
+
     &__label {
       margin-top: 25px;
       margin-bottom: 15px;
@@ -36,6 +41,8 @@
     &__submit {
       margin: 0 auto;
       margin-top: 50px;
+      width: 315px;
+      height: 45px;
     }
 
     &__budget {
@@ -67,6 +74,7 @@
 
       &__button {
         width: 100%;
+        font-size: 1em;
       }
 
       &__budget {
@@ -76,6 +84,8 @@
 
       &__submit {
         margin-bottom: 100px;
+        width: 100%;
+        font-size: 1em;
       }
     }
   }
