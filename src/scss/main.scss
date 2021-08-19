@@ -7,6 +7,9 @@
 @import "./components/nav";
 @import "./components/setupSidebar";
 @import "./components/dashboard";
+@import "./components/carousel";
+@import "./components/propertyCard";
+@import "./components/cardRatings";
 
 // SHARED CLASSES
 @import "./sharedClasses/setupClasses";
@@ -16,5 +19,6 @@
 @import "./pages/userSetup";
 @import "./pages/ratingSetup";
 @import "./pages/setupCongrats";
+@import "./pages/listings";
 
 @import "./confetti";

@@ -120,3 +120,27 @@
     transform: translateX(0);
   }
 }
+
+.dropdown {
+  background-color: white;
+  box-shadow: 2px 2px 10px rgba(black, 0.4);
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+
+  &-open {
+    pointer-events: all;
+    animation: openDropdown 0.3s forwards;
+  }
+}
+
+@keyframes openDropdown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

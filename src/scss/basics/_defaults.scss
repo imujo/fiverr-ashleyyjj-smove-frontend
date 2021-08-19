@@ -12,6 +12,10 @@ body {
   color: $blue;
 }
 
+ul {
+  list-style: none;
+}
+
 input,
 button,
 select,
@@ -33,4 +37,20 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.Amazing {
+  color: #009700;
+}
+.Good {
+  color: #ffb158;
+}
+.Meh {
+  color: black;
+}
+.Awful {
+  color: #c30101;
+}
+.Unrated {
+  color: #00335640;
 }

@@ -51,7 +51,7 @@ const Dashboard = (props) => {
 
                 {
                     isPhone ? 
-                        <FiMenu onClick={()=> setMenuIsOpen(true)} />
+                        <FiMenu onClick={()=> setMenuIsOpen(true)} style={{cursor: 'pointer'}} />
                     : 
                     <>
                         <button className='btn btn-outline btn-outline-orange dashboard__nav-button'>My home hub</button>

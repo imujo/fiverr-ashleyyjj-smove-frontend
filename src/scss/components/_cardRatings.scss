@@ -1,0 +1,70 @@
+.cardRatings {
+  list-style: none;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  &__ratingItem {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__ratingOption {
+    font-weight: 400;
+    font-size: 1em;
+  }
+
+  &__rating {
+    font-weight: 500;
+    font-size: 1.1em;
+    position: relative;
+  }
+
+  &__darrow {
+    cursor: pointer;
+  }
+}
+
+$ratingDropdownWidth: 100px;
+
+.ratingDropdown {
+  height: 120px;
+  width: $ratingDropdownWidth;
+  top: 0;
+  left: -$ratingDropdownWidth;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  z-index: 2;
+  box-sizing: border-box;
+  gap: 3px;
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    height: 25%;
+    padding-left: 10px;
+    cursor: pointer;
+    font-size: 0.8em;
+
+    &:hover {
+      background-color: $lightGrey;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .cardRatings {
+    &__ratingOption {
+      font-size: 0.6em;
+    }
+
+    &__rating {
+      font-size: 0.8em;
+    }
+  }
+}
