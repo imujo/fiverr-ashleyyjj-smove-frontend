@@ -1,11 +1,29 @@
 import React from 'react'
 import { IoAdd } from 'react-icons/io5';
 import PropertyCard from './PropertyCard';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
 
 const Carousel = ({ properties, template }) => {
 
     const { title, subtitle, template__title, template__subtitle, home } = template
+
+    const breakpoints = {
+        700: {
+            slidesPerView: 2,
+            spaceBetween: 1
+        },
+        1300: {
+            slidesPerView: 3
+        },
+        1700: {
+            slidesPerView: 4
+        }
+
+    }
+
 
     return (
         <div className='carousel'>
@@ -18,12 +36,23 @@ const Carousel = ({ properties, template }) => {
             {
                 properties.length ? 
                 
-                            properties.map((data, i)=>{
-                                return <PropertyCard key={i} />
-                                
-                            })
+                <Swiper
+                    spaceBetween={50}
+                    slidesPerView={1}
+                    breakpoints= {breakpoints}
+
+                >
+                    {
+                        properties.map((data, i)=>{
+                            return (
+                                <SwiperSlide key={i}>
+                                    <PropertyCard  />
+                                </SwiperSlide>
+                            )
+                        })
+                    }
               
-                    
+                </Swiper>
                       
                 
                 : 

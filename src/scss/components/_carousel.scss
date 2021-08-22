@@ -1,5 +1,8 @@
+.swiper-container {
+  padding-bottom: 75px;
+}
+
 .carousel {
-  margin-top: 100px;
   &__title {
     font-weight: 600;
     font-size: 1.3em;
@@ -26,6 +29,7 @@
     border: 1px solid rgba(0, 51, 86, 0.7);
     padding: 0 50px;
     box-sizing: border-box;
+    margin-bottom: 75px;
 
     display: flex;
     flex-direction: column;
@@ -60,7 +64,6 @@
 
 @media (max-width: 900px) {
   .carousel {
-    margin-top: 60px;
     &__title {
       font-size: 1.2em;
 
@@ -95,21 +98,20 @@
 
 @media (max-width: 700px) {
   .carousel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     &__title,
     &__subtitle {
       text-align: center;
+      margin: 0 auto;
     }
 
     &__title {
       font-size: 1em;
+      margin-bottom: 7px;
     }
 
     &__subtitle {
       font-size: 0.5em;
+      margin-bottom: 20px;
     }
 
     &__title__border {
@@ -120,6 +122,8 @@
       height: 300px;
       width: 235px;
       padding: 0 25px;
+      margin: 0 auto;
+      margin-bottom: 75px;
 
       &__title {
         font-size: 1em;

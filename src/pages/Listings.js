@@ -46,7 +46,7 @@ function Listings() {
             </ul>
 
 
-            <Carousel template={templateText.topRated} properties={[1,2]}/>
+            <Carousel template={templateText.topRated} properties={[1,2, 3, 4,1,2, 3, 4,]}/>
             <Carousel template={templateText.thinkAbout} properties={[]}/>
             <Carousel template={templateText.unrated} properties={[]}/>
         </div>

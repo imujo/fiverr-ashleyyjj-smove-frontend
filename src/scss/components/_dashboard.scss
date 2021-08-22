@@ -27,7 +27,7 @@
   }
 
   &__content {
-    max-width: 1400px;
+    width: 1600px;
     margin: 0 auto;
     margin-top: 40px;
     padding: 0 50px;
@@ -80,7 +80,21 @@
   }
 }
 
+@media (max-width: 1700px) {
+  .dashboard__content {
+    width: 1188px;
+  }
+}
+@media (max-width: 1300px) {
+  .dashboard__content {
+    width: 776px;
+  }
+}
+
 @media (max-width: 900px) {
+  .swiper-slide {
+    width: 270px;
+  }
   .dashboard {
     display: flex;
     flex-direction: column;
