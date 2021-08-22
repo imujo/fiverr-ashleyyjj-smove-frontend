@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'
 import { useHistory } from "react-router-dom";
+import UserSetupForm from '../components/UserSetupForm';
 
 
 const UserSetup = () => {
@@ -11,16 +12,12 @@ const UserSetup = () => {
     const [movingWith, setMovingWith] = useState('')
     const [budget, setBudget] = useState(0)
 
-    const [submited, setSubmited] = useState(false)
 
 
     const submit = () => {
-        setSubmited(true)
 
         if ( imA && budget && movingWith){
             history.push('/ratingsetup')
-        }else{
-            setTimeout(()=> setSubmited(false), 3000)
         }
     }
 
@@ -50,7 +47,7 @@ const UserSetup = () => {
                         <h1 className='setup__title userSetup__title' >What type of homemover are you?</h1>
                         <h2 className='setup__subtitle userSetup__subtitle'>Tell us a little bit more about your move so we can help you with relevant information and a personalised dashboard.</h2>
 
-                        <div className="userSetup__form">
+                        {/* <div className="userSetup__form">
 
                             <p className={` userSetup__form__label ${submited && !imA ? 'userSetup__form__label-error' : ''}`}>I am a:</p>
                             <div className="userSetup__form__section">
@@ -90,14 +87,25 @@ const UserSetup = () => {
                                 <input type="number" className='userSetup__form__budget' value={budget} onChange={(e)=> setBudget(e.target.value)} />
                             </div>
                             
+                        </div> */}
+
+                        <UserSetupForm 
+                            ima={imA}
+                            movingwith={movingWith}
+                            budget={budget}
+                            setima={setImA}
+                            setmovingwith={setMovingWith}
+                            setbudget={setBudget}
+                        />
+
                             <button 
                                 className={`
                                     userSetup__form__submit btn btn-fill btn-fill-orange btn-shadow
                                     ${canContinue ? '' : 'btn-fill-orange-disabled'}
                                 `}
                                 onClick={submit}
-                                >Next, set up preferences</button>
-                        </div>
+                                >Next, set up preferences
+                            </button>
 
                     </div>
 

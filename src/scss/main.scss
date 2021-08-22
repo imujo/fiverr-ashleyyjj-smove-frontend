@@ -10,6 +10,8 @@
 @import "./components/carousel";
 @import "./components/propertyCard";
 @import "./components/cardRatings";
+@import "./components/cardViewings";
+@import "./components/toggleSwitch";
 
 // SHARED CLASSES
 @import "./sharedClasses/setupClasses";
@@ -20,5 +22,6 @@
 @import "./pages/ratingSetup";
 @import "./pages/setupCongrats";
 @import "./pages/listings";
+@import "./pages/account";
 
 @import "./confetti";

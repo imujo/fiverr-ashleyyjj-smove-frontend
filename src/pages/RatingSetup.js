@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'  
 import { useHistory } from "react-router-dom";
+import SelectRatingOptions from '../components/SelectRatingOptions';
 
 
 const RatingSetup = () => {
@@ -127,54 +128,23 @@ const RatingSetup = () => {
                                     </div>
                                 </section>
 
-                                <section className='ratingSetup__section-select'>
-                                    <h3 className='setup__heading ratingSetup__label'>Select from the list or type your own</h3>
-                                    <div className="ratingSetup__select">
-                                        <h4 className='ratingSetup__select__number'>1</h4>
-                                        <input 
-                                            type="text" 
-                                            placeholder={true ? 'Type your own...' : ''} 
-                                            value={ratingOption1}
-                                            onChange={(e)=> setRatingOption1(e.target.value)}
-                                        />
-                                        <p onClick={()=>setRatingOption1('')}>X</p>
-                                    </div>
-                                    <div className="ratingSetup__select">
-                                        <h4 className='ratingSetup__select__number'>2</h4>
-                                        <input 
-                                            type="text" 
-                                            placeholder={true ? 'Type your own...' : ''} 
-                                            value={ratingOption2}
-                                            onChange={(e)=> setRatingOption2(e.target.value)}
-                                        />
-                                        <p onClick={()=>setRatingOption2('')}>X</p>
-                                    </div>
-                                    <div className="ratingSetup__select">
-                                        <h4 className='ratingSetup__select__number'>3</h4>
-                                        <input 
-                                            type="text" 
-                                            placeholder={true ? 'Type your own...' : ''} 
-                                            value={ratingOption3}
-                                            onChange={(e)=> setRatingOption3(e.target.value)}
-                                        />
-                                        <p onClick={()=>setRatingOption3('')}>X</p>
-                                    </div>
-                                    <div className="ratingSetup__select">
-                                        <h4 className='ratingSetup__select__number'>4</h4>
-                                        <input 
-                                            type="text" 
-                                            placeholder={true ? 'Type your own...' : ''} 
-                                            value={ratingOption4}
-                                            onChange={(e)=> setRatingOption4(e.target.value)}
-                                        />
-                                        <p onClick={()=>setRatingOption4('')}>X</p>
-                                    </div>
-                                </section>
+
+                                <SelectRatingOptions 
+                                    ratingoption1={ratingOption1}
+                                    ratingoption2={ratingOption2}
+                                    ratingoption3={ratingOption3}
+                                    ratingoption4={ratingOption4}
+                                    setratingoption1={setRatingOption1}
+                                    setratingoption2={setRatingOption2}
+                                    setratingoption3={setRatingOption3}
+                                    setratingoption4={setRatingOption4}
+                                    label='Select from the list or type your own'
+                                />
                             </div>
                             <button 
                                 className={`
-                                    setup__button setup__button-primary ratingSetup__submit
-                                    ${canContinue ? 'setup__button-primary-enabled' : 'setup__button-primary-disabled'}
+                                userSetup__form__submit btn btn-fill btn-fill-orange btn-shadow
+                                ${canContinue ? '' : 'btn-fill-orange-disabled'}
                                 `}
                                 onClick={submit}
                             >Finish</button>

@@ -3,7 +3,6 @@ import { IoAdd } from 'react-icons/io5';
 import PropertyCard from './PropertyCard';
 
 
-
 const Carousel = ({ properties, template }) => {
 
     const { title, subtitle, template__title, template__subtitle, home } = template
@@ -19,7 +18,13 @@ const Carousel = ({ properties, template }) => {
             {
                 properties.length ? 
                 
-                    <PropertyCard />
+                            properties.map((data, i)=>{
+                                return <PropertyCard key={i} />
+                                
+                            })
+              
+                    
+                      
                 
                 : 
 
@@ -35,4 +40,4 @@ const Carousel = ({ properties, template }) => {
     )
 }
 
-export default Carousel
+export default Carousel;

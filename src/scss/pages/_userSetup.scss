@@ -39,8 +39,9 @@
     }
 
     &__submit {
-      margin: 0 auto;
       margin-top: 50px;
+      margin-left: 50%;
+      transform: translateX(-50%);
       width: 315px;
       height: 45px;
     }

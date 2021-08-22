@@ -4,6 +4,7 @@ import { BiBath } from 'react-icons/bi';
 import CardRatings from './CardRatings';
 import { BiChevronDown } from 'react-icons/bi';
 import ManageDropdown from './ManageDropdown';
+import CardViewings from './CardViewings';
 
 
 
@@ -12,6 +13,8 @@ const PropertyCard = () => {
 
     const [currentPage, setCurrentPage] = useState('Ratings')
     const [isManagedOpen, setIsManagedOpen] = useState(false)
+
+    const viewings = true;
 
     return (
         <div className='propertyCard'>
@@ -37,6 +40,18 @@ const PropertyCard = () => {
             </div>
 
             <div className="propertyCard__navigation">
+                {
+                    viewings ?
+                    <h3 
+                        className={`
+                            propertyCard__navigation__item
+                            ${currentPage === 'Viewings' ? 'propertyCard__navigation__item-active' : ''}
+                        `}
+                        onClick={()=> setCurrentPage('Viewings')}
+                    >Viewings</h3>
+                    
+                    : null
+                }
                 <h3 
                     className={`
                         propertyCard__navigation__item
@@ -60,6 +75,7 @@ const PropertyCard = () => {
                 : 
                     null 
             }
+            { currentPage === 'Viewings' ? <CardViewings /> : null }
 
             <div className="propertyCard__organize">
                 <button className="propertyCard__organize__button propertyCard__organize__button-wide">See listing</button>

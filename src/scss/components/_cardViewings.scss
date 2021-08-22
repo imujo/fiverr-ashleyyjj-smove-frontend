@@ -1,0 +1,40 @@
+.cardViewings {
+  padding: 0 10px;
+  &__title {
+    font-size: 0.6em;
+  }
+
+  &__form {
+    height: 100%;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    &__item {
+      display: flex;
+      gap: 10px;
+    }
+
+    &__input {
+      border: 1px solid $blue;
+      border-radius: 4px;
+      box-sizing: border-box;
+      padding: 0 5px;
+      font-family: "Poppins", Arial, Helvetica, sans-serif;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .cardViewings__form {
+    &__label {
+      font-size: 0.8em;
+    }
+    &__input {
+      height: 18px;
+      font-size: 0.7em;
+      max-width: 50%;
+    }
+  }
+}
