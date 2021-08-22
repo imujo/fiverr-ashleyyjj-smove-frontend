@@ -91,6 +91,14 @@
       margin: 0 auto;
       margin-top: 40px;
       margin-bottom: 20px;
+      width: 315px;
+      height: 45px;
+    }
+
+    &__submitText {
+      color: $blue;
+      font-size: 1em;
+      text-decoration: underline;
     }
   }
 }
@@ -118,6 +126,13 @@
 @media (max-width: 700px) {
   .signup {
     &__form {
+      &__submit {
+        width: 100%;
+        font-size: 1em;
+      }
+      &__submitText {
+        font-size: 0.9em;
+      }
       &__input {
         font-size: 0.8em;
       }

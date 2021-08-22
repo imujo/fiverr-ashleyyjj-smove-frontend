@@ -1,6 +1,7 @@
 import {
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
 import Signup from './pages/Signup'
 import RatingSetup from './pages/RatingSetup'
@@ -30,9 +31,14 @@ function App() {
         <SetupCongrats />
       </Route>
 
+      <Route path='/' exact>
+        <Redirect to='/listings' />
+      </Route>
+
       <Route path='/:page?' >
         <Dashboard />
       </Route>
+
 
 
       </Switch>

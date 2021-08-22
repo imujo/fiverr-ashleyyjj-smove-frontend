@@ -150,9 +150,9 @@ const Signup = () => {
                             <h3 className='setup__heading'>Receive Email updates?</h3>
                             <p className='setup__text'>Receive checklists, information on home services for when you move and monthly updates.</p>
 
-                            <input className='setup__button setup__button-primary signup__form__submit' type="submit" value="Yes, get started now" />
+                            <input className='btn btn-fill btn-fill-orange btn-shadow signup__form__submit' type="submit" value="Yes, get started now" />
 
-                            <input className='setup__button setup__button-text' type="submit" value="No thanks, get started now" />
+                            <input className='btn signup__form__submitText' type="submit" value="No thanks, get started now" />
                         </form>
 
                         <p className='setup__text-small'>By clicking get started, you agree to smove’s <span className='hyperlink'>Terms of Use</span>, <span className='hyperlink'>Cookies</span>  and <span className='hyperlink'>Privacy Policy</span>.</p>

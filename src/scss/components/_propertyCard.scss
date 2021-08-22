@@ -207,6 +207,13 @@
   }
 }
 
+.seeAll {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media (max-width: 700px) {
   .propertyCard {
     margin: 0 auto;

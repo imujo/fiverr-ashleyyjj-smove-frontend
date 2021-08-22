@@ -88,6 +88,7 @@ const PropertyCard = () => {
                     <BiChevronDown />
                     <ManageDropdown open={isManagedOpen} setismanagedopen={setIsManagedOpen}/>
                 </button>
+
             </div>
 
         </div>
