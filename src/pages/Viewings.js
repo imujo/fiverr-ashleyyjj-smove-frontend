@@ -35,6 +35,7 @@ const Viewings = () => {
     }
     return (
         <div className='viewings'>
+            <div className='spacer'></div>
             <Carousel template={templateText.toView} properties={[]}/>
             <Carousel template={templateText.upcomingViews} properties={[]}/>
             <Carousel template={templateText.viewed} properties={[]}/>

@@ -38,12 +38,7 @@ const Account = () => {
                     
                 />
             </div>
-            <div style={{gridArea: 'personalDetails'}} className='account__section'>
-                <h2 className='carousel__title account__section__title'>
-                    Personal Details
-                    <div className="carousel__title__border"></div>
-                </h2>
-            </div>
+
             <div style={{gridArea: 'accountDetails'}} className='account__section'>
                 <h2 className='carousel__title account__section__title'>
                     Account Details
