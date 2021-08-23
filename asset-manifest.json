@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/imujo/fiverr-ashleyyjj-smove-frontend/static/css/main.a37fb132.chunk.css",
-    "main.js": "/imujo/fiverr-ashleyyjj-smove-frontend/static/js/main.f88dfff8.chunk.js",
-    "main.js.map": "/imujo/fiverr-ashleyyjj-smove-frontend/static/js/main.f88dfff8.chunk.js.map",
-    "runtime-main.js": "/imujo/fiverr-ashleyyjj-smove-frontend/static/js/runtime-main.54dcf05c.js",
-    "runtime-main.js.map": "/imujo/fiverr-ashleyyjj-smove-frontend/static/js/runtime-main.54dcf05c.js.map",
-    "static/css/2.b4e4841b.chunk.css": "/imujo/fiverr-ashleyyjj-smove-frontend/static/css/2.b4e4841b.chunk.css",
-    "static/js/2.696f5e80.chunk.js": "/imujo/fiverr-ashleyyjj-smove-frontend/static/js/2.696f5e80.chunk.js",
-    "static/js/2.696f5e80.chunk.js.map": "/imujo/fiverr-ashleyyjj-smove-frontend/static/js/2.696f5e80.chunk.js.map",
-    "index.html": "/imujo/fiverr-ashleyyjj-smove-frontend/index.html",
-    "static/css/2.b4e4841b.chunk.css.map": "/imujo/fiverr-ashleyyjj-smove-frontend/static/css/2.b4e4841b.chunk.css.map",
-    "static/css/main.a37fb132.chunk.css.map": "/imujo/fiverr-ashleyyjj-smove-frontend/static/css/main.a37fb132.chunk.css.map",
-    "static/js/2.696f5e80.chunk.js.LICENSE.txt": "/imujo/fiverr-ashleyyjj-smove-frontend/static/js/2.696f5e80.chunk.js.LICENSE.txt",
-    "static/media/main.css": "/imujo/fiverr-ashleyyjj-smove-frontend/static/media/house.e09941b3.svg"
+    "main.css": "/fiverr-ashleyyjj-smove-frontend/static/css/main.75600d57.chunk.css",
+    "main.js": "/fiverr-ashleyyjj-smove-frontend/static/js/main.ade5783a.chunk.js",
+    "main.js.map": "/fiverr-ashleyyjj-smove-frontend/static/js/main.ade5783a.chunk.js.map",
+    "runtime-main.js": "/fiverr-ashleyyjj-smove-frontend/static/js/runtime-main.d873dbdc.js",
+    "runtime-main.js.map": "/fiverr-ashleyyjj-smove-frontend/static/js/runtime-main.d873dbdc.js.map",
+    "static/css/2.b4e4841b.chunk.css": "/fiverr-ashleyyjj-smove-frontend/static/css/2.b4e4841b.chunk.css",
+    "static/js/2.a1885d22.chunk.js": "/fiverr-ashleyyjj-smove-frontend/static/js/2.a1885d22.chunk.js",
+    "static/js/2.a1885d22.chunk.js.map": "/fiverr-ashleyyjj-smove-frontend/static/js/2.a1885d22.chunk.js.map",
+    "index.html": "/fiverr-ashleyyjj-smove-frontend/index.html",
+    "static/css/2.b4e4841b.chunk.css.map": "/fiverr-ashleyyjj-smove-frontend/static/css/2.b4e4841b.chunk.css.map",
+    "static/css/main.75600d57.chunk.css.map": "/fiverr-ashleyyjj-smove-frontend/static/css/main.75600d57.chunk.css.map",
+    "static/js/2.a1885d22.chunk.js.LICENSE.txt": "/fiverr-ashleyyjj-smove-frontend/static/js/2.a1885d22.chunk.js.LICENSE.txt",
+    "static/media/main.css": "/fiverr-ashleyyjj-smove-frontend/static/media/house.e09941b3.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.54dcf05c.js",
+    "static/js/runtime-main.d873dbdc.js",
     "static/css/2.b4e4841b.chunk.css",
-    "static/js/2.696f5e80.chunk.js",
-    "static/css/main.a37fb132.chunk.css",
-    "static/js/main.f88dfff8.chunk.js"
+    "static/js/2.a1885d22.chunk.js",
+    "static/css/main.75600d57.chunk.css",
+    "static/js/main.ade5783a.chunk.js"
   ]
 }
