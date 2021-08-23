@@ -94,11 +94,10 @@
     }
   }
 
+  $noteMargin: 12px;
   &__notes {
-    $noteMargin: 12px;
-
-    height: calc(100% - 2 * $noteMargin);
-    width: calc(100% - 2 * $noteMargin);
+    height: calc(100% - 24px);
+    width: calc(100% - 24px);
     margin: $noteMargin;
     resize: none;
     padding-left: 5px;
