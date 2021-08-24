@@ -4,7 +4,7 @@ import App from './App';
 import './scss/main.css'
 
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
 } from "react-router-dom";
 
 ReactDOM.render(
