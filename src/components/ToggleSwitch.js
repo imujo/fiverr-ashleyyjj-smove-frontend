@@ -7,6 +7,7 @@ const ToggleSwitch = ({ checked, setchecked }) => {
                 type="checkbox"
                 className="toggle-switch-checkbox"
                 checked={checked}
+                onChange
             />
             <label className="toggle-switch-label">
             <span className="toggle-switch-inner" />
