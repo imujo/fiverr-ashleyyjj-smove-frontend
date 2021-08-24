@@ -19,8 +19,8 @@ const ManageDropdown = ({ open, setismanagedopen }) => {
 
     return (
         <ul className={`manageDropdown dropdown ${open ? 'dropdown-open' : ''}`} ref={dropdown}>
-            <li className="manageDropdown__item">Move to think about list</li>            
-            <li className="manageDropdown__item">Move to viewing list</li>            
+            <li className="manageDropdown__item">Move to 'think about' list</li>            
+            <li className="manageDropdown__item">Move to 'viewing' list</li>            
         </ul>
     )
 }

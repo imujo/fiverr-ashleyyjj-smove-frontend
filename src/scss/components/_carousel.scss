@@ -2,6 +2,16 @@
   padding-bottom: 75px;
 }
 
+.swiper-pagination-bullet {
+  border-radius: 0;
+  height: 2px;
+  width: 10px;
+
+  &-active {
+    background-color: $blue;
+  }
+}
+
 .carousel {
   &__title {
     font-weight: 600;

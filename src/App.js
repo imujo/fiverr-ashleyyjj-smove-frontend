@@ -8,10 +8,12 @@ import RatingSetup from './pages/RatingSetup'
 import UserSetup from './pages/UserSetup'
 import SetupCongrats from './pages/SetupCongrats'
 import Dashboard from "./components/Dashboard";
+import ScrollToTop from './functions/ScrollToTop'
 
 function App() {
   return (
-    <div>
+    <>
+      <ScrollToTop />
       <Switch>
 
 
@@ -45,7 +47,7 @@ function App() {
       <div className="alert">
         <p>There has been an error</p>
       </div>
-    </div>
+    </>
   );
 }
 

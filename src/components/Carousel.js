@@ -1,10 +1,13 @@
 import React from 'react'
 import { IoAdd } from 'react-icons/io5';
 import PropertyCard from './PropertyCard';
+import SwiperCore, { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
+
+SwiperCore.use([ Pagination ]);
 
 const Carousel = ({ properties, template }) => {
 
@@ -39,6 +42,7 @@ const Carousel = ({ properties, template }) => {
                 <Swiper
                     spaceBetween={50}
                     slidesPerView={1}
+                    pagination={{ clickable: true }}
                     breakpoints= {breakpoints}
 
                 >
