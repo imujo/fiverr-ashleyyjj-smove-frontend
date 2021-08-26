@@ -9,7 +9,7 @@ import 'swiper/components/pagination/pagination.scss';
 
 SwiperCore.use([ Pagination ]);
 
-const Carousel = ({ properties, template }) => {
+const Carousel = ({ properties, template, viewings, manageoptions }) => {
 
     const { title, subtitle, template__title, template__subtitle, home } = template
 
@@ -50,7 +50,13 @@ const Carousel = ({ properties, template }) => {
                         properties.map((data, i)=>{
                             return (
                                 <SwiperSlide key={i}>
-                                    <PropertyCard  />
+                                    <PropertyCard
+                                        note={data.note}
+                                        websiteurl={data.websiteurl}
+                                        dashboardlocation={data.dashboardlocation}
+                                        viewings={viewings}
+                                        manageoptions={manageoptions}
+                                    />
                                 </SwiperSlide>
                             )
                         })

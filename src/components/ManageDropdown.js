@@ -1,8 +1,14 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
+import { updateDashboardLocation } from '../functions/apiFunctions'
+import { ReloadStateContext } from '../state/ReloadState'
 
-const ManageDropdown = ({ open, setismanagedopen }) => {
+
+const ManageDropdown = ({ open, setismanagedopen, options, websiteurl }) => {
 
     const dropdown = useRef()
+
+    const { reloadCarouselsGlobal } = useContext(ReloadStateContext);
+    const [,reloadCarousels] = reloadCarouselsGlobal;
 
 
     useEffect(() => {
@@ -19,8 +25,12 @@ const ManageDropdown = ({ open, setismanagedopen }) => {
 
     return (
         <ul className={`manageDropdown dropdown ${open ? 'dropdown-open' : ''}`} ref={dropdown}>
-            <li className="manageDropdown__item">Move to 'think about' list</li>            
-            <li className="manageDropdown__item">Move to 'viewing' list</li>            
+          {
+            options.map((option, i)=>{
+              return <li className="manageDropdown__item" key={i} onClick={()=> updateDashboardLocation(websiteurl, option.newLocation, reloadCarousels)}>{option.title}</li>            
+
+            })
+          }
         </ul>
     )
 }

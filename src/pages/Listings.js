@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Carousel from '../components/Carousel'
+import { getProperties } from '../functions/apiFunctions'
+import { ReloadStateContext } from '../state/ReloadState'
 
 function Listings() {
 
@@ -27,28 +29,88 @@ function Listings() {
         }
     }
 
+    const manageOptions = {
+        topRated: [
+            {
+                title: "Move to 'think about' list",
+                newLocation: 'think_about'
+            },
+            {
+                title: "Move to 'viewings' list",
+                newLocation: 'to_view'
+            },
+        ],
+        thinkAbout: [
+            {
+                title: "Move to 'viewings' list",
+                newLocation: 'to_view'
+            },
+        ],
+        unrated: [
+            {
+                title: "Move to 'think about' list",
+                newLocation: 'think_about'
+            },
+        ]
+    }
+    
+    const [topRatedProperties, setTopRatedProperties] = useState([])
+    const [unratedProperies, setUnratedProperies] = useState([])
+    const [thinkAboutProperties, setThinkAboutProperties] = useState([])
+
+    const { reloadCarouselsGlobal } = useContext(ReloadStateContext);
+    const [carouselsReloadState,] = reloadCarouselsGlobal;
+
+
+    useEffect(() => {
+        getProperties('top')
+            .then(data => setTopRatedProperties(data))
+        
+        getProperties('unrated')
+            .then(data => setUnratedProperies(data))
+        
+        getProperties('think_about')
+            .then(data => setThinkAboutProperties(data))
+
+    }, [carouselsReloadState])
+
     return (
         <div className='listings'>
 
             <ul className="listings__stats">
                 <li className="listings__stats__stat">
-                    <p className="listings__stats__stat__number">0</p>
+                    <p className="listings__stats__stat__number">{topRatedProperties.length}</p>
                     <p className="listings__stats__stat__title">Homes Rated</p>
                 </li>
                 <li className="listings__stats__stat">
-                    <p className="listings__stats__stat__number">0</p>
+                    <p className="listings__stats__stat__number">{thinkAboutProperties.length}</p>
                     <p className="listings__stats__stat__title">Think About List</p>
                 </li>
                 <li className="listings__stats__stat">
-                    <p className="listings__stats__stat__number">0</p>
+                    <p className="listings__stats__stat__number">{unratedProperies.length}</p>
                     <p className="listings__stats__stat__title">Unrated Homes</p>
                 </li>
             </ul>
 
 
-            <Carousel template={templateText.topRated} properties={[1,2, 3, 4,1,2, 3, 4,]}/>
-            <Carousel template={templateText.thinkAbout} properties={[]}/>
-            <Carousel template={templateText.unrated} properties={[]}/>
+            <Carousel 
+                template={templateText.topRated} 
+                properties={topRatedProperties} 
+                viewings={false}
+                manageoptions={manageOptions.topRated}
+            />
+            <Carousel 
+                template={templateText.thinkAbout} 
+                properties={thinkAboutProperties} 
+                viewings={false}
+                manageoptions={manageOptions.thinkAbout}
+            />
+            <Carousel 
+                template={templateText.unrated} 
+                properties={unratedProperies} 
+                viewings={false}
+                manageoptions={manageOptions.unrated}
+            />
         </div>
     )
 }

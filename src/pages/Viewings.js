@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Carousel from '../components/Carousel'
+import { getProperties } from '../functions/apiFunctions'
+import { ReloadStateContext } from '../state/ReloadState'
 
 const Viewings = () => {
 
@@ -11,7 +13,7 @@ const Viewings = () => {
             template__subtitle: '',
             home: 'homes'
         },
-        upcomingViews: {
+        upcomingViewings: {
             title: 'Upcoming viewings',
             subtitle: 'viewings booked',
             template__title: 'Keep track of upcoming viewings here',
@@ -33,13 +35,115 @@ const Viewings = () => {
             home: 'homes'
         },
     }
+
+    const manageOptions = {
+        toView: [
+            {
+                title: "Move to 'think about' list",
+                newLocation: 'think_about'
+            },
+            {
+                title: "Move to 'already viewed'",
+                newLocation: 'viewed'
+            },
+            {
+                title: "Move to 'made an offer'",
+                newLocation: 'offer_made'
+            },
+        ],
+        upcomingViewings: [
+            {
+                title: "Move to 'think about' list",
+                newLocation: 'think_about'
+            },
+            {
+                title: "Move to 'already viewed'",
+                newLocation: 'viewed'
+            },
+            {
+                title: "Move to 'made an offer'",
+                newLocation: 'offer_made'
+            },
+        ],
+        viewed: [
+            {
+                title: "Move to 'think about' list",
+                newLocation: 'think_about'
+            },
+            {
+                title: "Book another viewing",
+                newLocation: 'to_view'
+            },
+            {
+                title: "Move to 'made an offer'",
+                newLocation: 'offers'
+            },
+        ],
+        offers: [
+            {
+                title: "Move to 'think about' list",
+                newLocation: 'think_about'
+            },
+            {
+                title: "Book a viewing",
+                newLocation: 'to_view'
+            }
+        ],
+    }
+
+    const [viewingsProperties, setViewingsProperties] = useState([])
+    const [upcomingViewingsProperties, setUpcomingViewingsProperties] = useState([])
+    const [viewedProperties, setViewedProperties] = useState([])
+    const [offersProperties, setOffersProperties] = useState([])
+
+
+    const { reloadCarouselsGlobal } = useContext(ReloadStateContext);
+    const [carouselsReloadState,] = reloadCarouselsGlobal;
+
+
+    useEffect(() => {
+        getProperties('to_view')
+            .then(data => setViewingsProperties(data))
+        
+        getProperties('upcoming_viewings')
+            .then(data => setUpcomingViewingsProperties(data))
+        
+        getProperties('viewed')
+            .then(data => setViewedProperties(data))
+        
+            getProperties('offers')
+            .then(data => setOffersProperties(data))
+
+    }, [carouselsReloadState])
+
+
     return (
         <div className='viewings'>
             <div className='spacer'></div>
-            <Carousel template={templateText.toView} properties={[]}/>
-            <Carousel template={templateText.upcomingViews} properties={[]}/>
-            <Carousel template={templateText.viewed} properties={[]}/>
-            <Carousel template={templateText.offers} properties={[]}/>
+            <Carousel 
+                template={templateText.toView} 
+                properties={viewingsProperties}
+                viewings={true}
+                manageoptions={manageOptions.toView}
+            />
+            <Carousel 
+                template={templateText.upcomingViewings} 
+                properties={upcomingViewingsProperties}
+                viewings={true}
+                manageoptions={manageOptions.upcomingViewings}
+            />
+            <Carousel 
+                template={templateText.viewed} 
+                properties={viewedProperties}
+                viewings={true}
+                manageoptions={manageOptions.viewed}
+            />
+            <Carousel 
+                template={templateText.offers} 
+                properties={offersProperties}
+                viewings={true}
+                manageoptions={manageOptions.offers}
+            />
         </div>
     )
 }

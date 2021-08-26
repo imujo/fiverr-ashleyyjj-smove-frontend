@@ -3,6 +3,7 @@ import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'  
 import { useHistory } from "react-router-dom";
 import SelectRatingOptions from '../components/SelectRatingOptions';
+import { ratingSetup } from '../functions/authFunctions';
 
 
 const RatingSetup = () => {
@@ -68,8 +69,9 @@ const RatingSetup = () => {
         console.log('submit')
 
         if ( ratingOption1 && ratingOption2 && ratingOption3 && ratingOption4){
-            console.log('can submit')
-            history.push('/setupcongrats')
+            ratingSetup(ratingOption1, ratingOption2, ratingOption3, ratingOption4)
+                .then(()=> history.push('/setupcongrats'))
+                .catch((err)=> console.log(err))
         }
     }
 

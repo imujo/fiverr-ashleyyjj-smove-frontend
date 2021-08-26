@@ -7,7 +7,7 @@
   &__ratingItem {
     display: flex;
     justify-content: space-between;
-
+    cursor: pointer;
     div {
       display: flex;
       align-items: center;
@@ -22,10 +22,6 @@
     font-weight: 500;
     font-size: 1.1em;
     position: relative;
-  }
-
-  &__darrow {
-    cursor: pointer;
   }
 }
 

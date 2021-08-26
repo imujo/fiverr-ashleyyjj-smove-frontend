@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'
 import { useHistory } from "react-router-dom";
+import { signUp } from '../functions/authFunctions'
 
 const Signup = () => {
 
@@ -41,15 +42,18 @@ const Signup = () => {
 
 
     }
-    
 
-    const submit = (e) => {
-        e.preventDefault();
+    const submit = (marketing) => {
 
         setSubmited(true)
 
         if (fName && lName && email && validatePassword(pswrd)){
-            history.push('/usersetup')
+
+            console.log('signing up')
+            signUp(fName, lName, email, pswrd, marketing)
+                .then(() =>  history.push('/usersetup'))
+                .catch(err => console.log(err.msg))
+
         }else{
             setTimeout(()=> setSubmited(false), 3000)
         }
@@ -73,7 +77,7 @@ const Signup = () => {
 
 
 
-                        <form className='signup__form' onSubmit={submit}>
+                        <form className='signup__form'>
                             <div className="signup__form__inputsection">
 
                                 <div className={`signup__form__item signup__form__item-narrow ${(submited && !fName) ? 'signup__form__error' : ''}`}>
@@ -150,9 +154,19 @@ const Signup = () => {
                             <h3 className='setup__heading'>Receive Email updates?</h3>
                             <p className='setup__text'>Receive checklists, information on home services for when you move and monthly updates.</p>
 
-                            <input className='btn btn-fill btn-fill-orange btn-shadow signup__form__submit' type="submit" value="Yes, get started now" />
+                            <input 
+                                className='btn btn-fill btn-fill-orange btn-shadow signup__form__submit' 
+                                type="submit" 
+                                value="Yes, get started now" 
+                                onClick={()=> submit(true)}
+                            />
 
-                            <input className='btn signup__form__submitText' type="submit" value="No thanks, get started now" />
+                            <input 
+                                className='btn signup__form__submitText' 
+                                type="submit" 
+                                value="No thanks, get started now" 
+                                onClick={()=> submit(false)}
+                            />
                         </form>
 
                         <p className='setup__text-small'>By clicking get started, you agree to smove’s <span className='hyperlink'>Terms of Use</span>, <span className='hyperlink'>Cookies</span>  and <span className='hyperlink'>Privacy Policy</span>.</p>

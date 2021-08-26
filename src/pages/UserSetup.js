@@ -3,6 +3,7 @@ import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'
 import { useHistory } from "react-router-dom";
 import UserSetupForm from '../components/UserSetupForm';
+import { userSetup } from '../functions/authFunctions';
 
 
 const UserSetup = () => {
@@ -17,11 +18,14 @@ const UserSetup = () => {
     const submit = () => {
 
         if ( imA && budget && movingWith){
-            history.push('/ratingsetup')
+            userSetup(imA, movingWith, budget)
+             .then(()=> history.push('/ratingsetup'))
+             .catch(err => console.log(err.msg))
         }
     }
 
     const [canContinue, setCanContinue] = useState(false)
+
 
     useEffect(() => {
         

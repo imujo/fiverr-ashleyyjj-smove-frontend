@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './scss/main.css'
+import { ReloadStateProvider } from './state/ReloadState'
 
 import {
   HashRouter as Router,
@@ -10,7 +11,9 @@ import {
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <ReloadStateProvider>
+        <App />
+      </ReloadStateProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
