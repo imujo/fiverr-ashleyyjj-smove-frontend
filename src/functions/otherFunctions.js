@@ -13,6 +13,10 @@ export const onlyNumbers = (value) => {
 
 export const commify = (value) => {
     value = value.toString()
+
+    while (value[0] === '0'){
+        value = value.substring(1)
+    }
     var chars = onlyNumbers(value).split("").reverse()
     var withCommas = []
     for(var i = 1; i <= chars.length; i++ ){

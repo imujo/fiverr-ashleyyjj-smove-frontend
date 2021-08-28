@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { commify, onlyNumbers } from '../functions/otherFunctions'
 
 const UserSetupForm = ({ ima, movingwith, budget, setima, setmovingwith, setbudget }) => {
 
     const submited = false
     const [commaValue, setCommaValue] = useState('')
+
+    useEffect(() => {
+        setCommaValue(commify(budget))
+    }, [budget])
+
 
     return (
         <div className="userSetup__form">

@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SelectRatingOptions from '../components/SelectRatingOptions'
 import ToggleSwitch from '../components/ToggleSwitch'
 import UserSetupForm from '../components/UserSetupForm'
+import { updateUserSettings } from '../functions/apiFunctions'
+import { fetchUser } from '../functions/authFunctions'
 
 const Account = () => {
 
@@ -17,6 +19,30 @@ const Account = () => {
     const [email, setEmail] = useState(false)
     const [SMS, setSMS] = useState(false)
     const [post, setPost] = useState(false)
+
+    useEffect(() => {
+        fetchUser()
+            .then(user => {
+                setRatingOption1(user.ratingoption1)
+                setRatingOption2(user.ratingoption2)
+                setRatingOption3(user.ratingoption3)
+                setRatingOption4(user.ratingoption4)
+
+                setImA(user.buyertype)
+                setMovingWith(user.movingwith)
+                setBudget(user.budget)
+
+                setEmail(user.email_contact)
+                setSMS(user.sms_contact)
+                setPost(user.post_contact)
+                
+            })
+    }, [])
+
+    const submit = () => {
+        updateUserSettings(imA, movingWith, budget, ratingOption1, ratingOption2, ratingOption3, ratingOption4,email ,SMS ,post)
+    }
+    
 
     return (
         <div className='account'>
@@ -75,12 +101,13 @@ const Account = () => {
                     </div>
                 </ul>
 
-                <h3 className='carousel__subtitle account__section__subtitle'>*We will also use your email address (anonymised to protect your identity) to display relevant content to you on social media and other websites. Please see our privacy policy for more information.</h3>
-
-
-
-                
+                <h3 className='carousel__subtitle account__section__subtitle'>*We will also use your email address (anonymised to protect your identity) to display relevant content to you on social media and other websites. Please see our privacy policy for more information.</h3>                
             </div>
+
+            <button 
+                className="btn btn-fill btn-fill-orange btn-hover account__save"
+                onClick={submit}
+            >Save</button>
         </div>
     )
 }

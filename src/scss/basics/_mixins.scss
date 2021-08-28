@@ -1,19 +1,28 @@
 @mixin alert($color) {
   color: $color;
-  background-color: lighten($color, 45%);
+  background-color: rgba($color, 0.3);
 }
 
 .alert {
+  $alertHeight: 40px;
   width: calc(100% - 10px);
-  margin: 0 5px;
-  height: 40px;
+  margin: 5px;
+  justify-self: center;
+  height: $alertHeight;
   position: absolute;
-  bottom: 5px;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      bottom: ($i - 2) * ($alertHeight + 2px);
+    }
+  }
+
   &-error {
     @include alert(rgb(170, 2, 2));
   }

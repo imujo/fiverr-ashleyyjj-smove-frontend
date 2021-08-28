@@ -5,8 +5,8 @@ import CardRatings from './CardRatings';
 import { BiChevronDown } from 'react-icons/bi';
 import ManageDropdown from './ManageDropdown';
 import CardViewings from './CardViewings';
-import { getProperty, getUserPropertyViewingDetails, updateNote } from '../functions/apiFunctions';
-import { calcDateDayDifference, calcVsBudget, commify } from '../functions/otherFunctions'
+import { deleteUserProperty, getProperty, updateNote } from '../functions/apiFunctions';
+import { calcVsBudget, commify } from '../functions/otherFunctions'
 import { ReloadStateContext } from '../state/ReloadState'
 
 
@@ -15,15 +15,16 @@ import { ReloadStateContext } from '../state/ReloadState'
 
 const PropertyCard = ({note, websiteurl, dashboardlocation, viewings, manageoptions}) => {
 
-    const [currentPage, setCurrentPage] = useState('Ratings')
+    const [currentPage, setCurrentPage] = useState(viewings ? 'Viewings' : 'Ratings')
     const [isManagedOpen, setIsManagedOpen] = useState(false)
     const [propertyInfo, setPropertyInfo] = useState({price: 0})
     const [noteValue, setNoteValue] = useState(note ? note : '')
     const [vsBudget, setVsBudget] = useState({})
     const [daysToGo, setDaysToGo] = useState(0)
 
-    const { reloadPropertyGlobal } = useContext(ReloadStateContext);
+    const { reloadPropertyGlobal, reloadCarouselsGlobal } = useContext(ReloadStateContext);
     const [propertyReloadState, ] = reloadPropertyGlobal;
+    const [, reloadCarousels] = reloadCarouselsGlobal
 
     const initalRender = useRef(true)
 
@@ -135,7 +136,7 @@ const PropertyCard = ({note, websiteurl, dashboardlocation, viewings, manageopti
                 <a href={propertyInfo.websiteurl} target="_blank" rel="noreferrer">
                     <button className="propertyCard__organize__button propertyCard__organize__button-wide">See listing</button>
                 </a>
-                <button className="propertyCard__organize__button propertyCard__organize__button-narrow">X</button>
+                <button className="propertyCard__organize__button propertyCard__organize__button-narrow" onClick={()=> deleteUserProperty(websiteurl, reloadCarousels)}>X</button>
                 <button 
                     className="propertyCard__organize__button propertyCard__organize__button-wide"
                     onClick={()=> setIsManagedOpen(!isManagedOpen)}

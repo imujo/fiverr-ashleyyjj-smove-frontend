@@ -16,6 +16,20 @@ const ReloadStateProvider = (props) => {
     }
     
 
+    const [alert, setAlert] = useState({})
+
+    const addAlert = (msg, type) => {
+      setAlert({
+        msg: msg,
+        type: type
+      })
+
+      setTimeout(()=> setAlert({}), 3000)
+    }
+    
+    
+
+
   return (
     <ReloadStateContext.Provider
       value={{
@@ -23,6 +37,8 @@ const ReloadStateProvider = (props) => {
         reloadCarouselsGlobal: [carouselsReloadState, reloadCarousels],
         
         reloadPropertyGlobal: [propertyReloadState, reloadProperty],
+
+        alertGlobal: [alert, addAlert]
 
 
       }}

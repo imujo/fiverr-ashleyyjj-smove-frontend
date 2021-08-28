@@ -1,7 +1,7 @@
 import {
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import Signup from './pages/Signup'
 import RatingSetup from './pages/RatingSetup'
@@ -9,45 +9,57 @@ import UserSetup from './pages/UserSetup'
 import SetupCongrats from './pages/SetupCongrats'
 import Dashboard from "./components/Dashboard";
 import ScrollToTop from './functions/ScrollToTop'
+import PrivateRoute from "./functions/PrivateRoute";
+import Login from './pages/Login'
+import { ReloadStateContext } from './state/ReloadState'
+import { useContext } from "react";
+
 
 function App() {
+
+
+  const { alertGlobal } = useContext(ReloadStateContext);
+  const [alert,] = alertGlobal;
+
   return (
+
     <>
       
       <ScrollToTop />
       <Switch>
 
 
-      <Route path='/signup' >
-        <Signup />
-      </Route>
+      <Route path='/signup' component={Signup} />
 
-      <Route path='/usersetup' >
-        <UserSetup />
-      </Route>
+      <Route path='/login' component={Login}/>
 
-      <Route path='/ratingsetup' >
-        <RatingSetup />
-      </Route>
+      <PrivateRoute path='/usersetup' component={UserSetup} />
+
+      <PrivateRoute path='/ratingsetup' component={RatingSetup} />
       
-      <Route path='/setupcongrats' >
-        <SetupCongrats />
-      </Route>
+      <PrivateRoute path='/setupcongrats' component={SetupCongrats} />
 
-      <Route path='/' exact>
-        <Redirect to='/listings' />
-      </Route>
+      <PrivateRoute path='/' exact component={<Redirect to='/listings' />} />
 
-      <Route path='/:page?' >
-        <Dashboard />
-      </Route>
+      <PrivateRoute path='/:page?' component={Dashboard} />
+      
 
 
 
       </Switch>
-      <div className="alert">
-        <p>There has been an error</p>
-      </div>
+      {
+
+        alert ?
+
+        <div className={`alert alert-${alert.type} alert-active`}>
+          <p>{alert.msg}</p>
+        </div>
+
+        : 
+        undefined
+        
+      }
+      
     </>
   );
 }

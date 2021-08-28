@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useContext } from 'react'
-import { getUserPropertyViewingDetails, updateUserPropertyViewingDetails } from '../functions/apiFunctions'
+import React, { useEffect, useState, useContext } from 'react'
+import { getUserPropertyViewingDetails, updateDashboardLocation, updateUserPropertyViewingDetails } from '../functions/apiFunctions'
 import { calcDateDayDifference } from '../functions/otherFunctions';
 import { ReloadStateContext } from '../state/ReloadState'
 
@@ -8,7 +8,7 @@ import { ReloadStateContext } from '../state/ReloadState'
 const CardViewings = ({ websiteurl, dashboardlocation, daystogo, setdaystogo }) => {
 
     const { reloadCarouselsGlobal, reloadPropertyGlobal } = useContext(ReloadStateContext);
-    const [,reloadCarousels] = reloadCarouselsGlobal;
+    const [ ,reloadCarousels] = reloadCarouselsGlobal;
     const [, reloadProperty] = reloadPropertyGlobal;
 
     const [date, setDate] = useState('')
@@ -16,7 +16,6 @@ const CardViewings = ({ websiteurl, dashboardlocation, daystogo, setdaystogo }) 
     const [address, setAddress] = useState('')
 
 
-    const initalRender = useRef(true)
 
     useEffect(() => {
         getUserPropertyViewingDetails(websiteurl)
@@ -29,30 +28,33 @@ const CardViewings = ({ websiteurl, dashboardlocation, daystogo, setdaystogo }) 
 
     useEffect(() => {
 
-        if (initalRender.current){
-            initalRender.current = false
-        }else{
-            var timeout = setTimeout(()=> {
-                updateUserPropertyViewingDetails(websiteurl, date, time, address, reloadCarousels)
-                    .then(()=> {
-                        getUserPropertyViewingDetails(websiteurl)
-                            .then(details =>{
-                                if (dashboardlocation === 'upcoming_viewings'){
-                                    const newDaysToGo = calcDateDayDifference(details.viewing_date)
-                                    if (daystogo !== newDaysToGo){
-                                        setdaystogo(newDaysToGo)
-                                        reloadProperty()
-                                    }
-                                }
-                            })
-                    })
 
-            }, 2000)
-        }
+        var timeout = setTimeout(()=> {
+            updateUserPropertyViewingDetails(websiteurl, date, time, address, dashboardlocation, reloadCarousels)
+                .then(()=> {
+                    getUserPropertyViewingDetails(websiteurl)
+                        .then(details =>{
+                            if (dashboardlocation === 'upcoming_viewings'){
+                                const newDaysToGo = calcDateDayDifference(details.viewing_date)
+                                if (daystogo !== newDaysToGo){
+                                    setdaystogo(newDaysToGo)
+                                    reloadProperty()
+                                }
+
+                                if (newDaysToGo < 0){
+                                    updateDashboardLocation(websiteurl, 'viewed', reloadCarousels)
+                                    updateUserPropertyViewingDetails(websiteurl, '', '', '', dashboardlocation, reloadCarousels)
+                                }
+                            }
+                        })
+                })
+
+        }, 2000)
 
         return () => clearTimeout(timeout)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [date, time, address, websiteurl])
+
 
  
 

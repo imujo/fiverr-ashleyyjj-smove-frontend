@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Nav from '../components/Nav'
 import Confetti from '../components/Confetti'
 import { useHistory } from "react-router-dom";
+import { fetchUser } from '../functions/authFunctions';
 
 
 const SetupCongrats = () => {
 
     let history = useHistory();
+
+    useEffect(() => {
+        fetchUser()
+            .then(user => {
+                if (user.movingwith === null){
+                    history.push('/usersetup')
+                }else if (user.ratingoption1 === null){
+                    history.push('/ratingsetup')
+                }
+            })
+    }, [history])
 
 
     return (

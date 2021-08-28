@@ -16,8 +16,17 @@ export const logIn = (email, password) => {
         body: JSON.stringify(data)
     })
         .then(res => res.json())
-        .then((message)=> {console.log(message); return message})
-        .catch(err => console.log('User not logged in'))
+        .then((data)=> {
+            
+            if (data.isSuccess){
+                console.log('Logged in')
+                localStorage.removeItem('jwtToken')
+                localStorage.setItem('jwtToken', data.token)
+                localStorage.setItem('isAuth', true)
+            }
+            return data
+        })
+        .catch(err => {console.log("There has been an error logging in user"); return err})
 }
 
 export const signUp = ( fname, lname, email, password, marketing) => {
@@ -39,13 +48,29 @@ export const signUp = ( fname, lname, email, password, marketing) => {
         body: JSON.stringify(data)
     })
         .then(res => res.json())
-        .then(message => { logIn(email, password); return message })
+        .then(data => {
+
+            if (data.isSuccess){
+                localStorage.removeItem('jwtToken')
+                localStorage.setItem('jwtToken', data.token)
+                localStorage.setItem('isAuth', true)
+                console.log('Registered')
+            }
+            return data
+            
+        })
         .catch  (err => {console.log('There has been an error registering user'); return err})
 }
 
 export const fetchUser = () => {
     
-    return fetch(`${api}/auth/user`)
+    return fetch(`${api}/auth/user`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
+        }
+    })
         .then(res => res.json())
         .then(user => {return user})
         .catch(console.log)
@@ -64,6 +89,7 @@ export const userSetup = ( buyertype, movingwith, budget ) => {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
         },
         body: JSON.stringify(data)
     })
@@ -86,6 +112,7 @@ export const ratingSetup = (ratingoption1, ratingoption2, ratingoption3, ratingo
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
         },
         body: JSON.stringify(data)
     })
@@ -94,3 +121,5 @@ export const ratingSetup = (ratingoption1, ratingoption2, ratingoption3, ratingo
         .catch  (err => {console.log('There has been an error adding user rating options'); return err})
 
 }
+
+

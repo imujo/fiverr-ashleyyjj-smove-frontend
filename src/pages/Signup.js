@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'
 import { useHistory } from "react-router-dom";
 import { signUp } from '../functions/authFunctions'
+import { ReloadStateContext } from '../state/ReloadState'
+
 
 const Signup = () => {
 
@@ -17,6 +19,9 @@ const Signup = () => {
     const [longEnough, setLongEnough] = useState(false)
     const [containNumber, setContainNumber] = useState(false)
     const [submited, setSubmited] = useState(false)
+
+    const { alertGlobal } = useContext(ReloadStateContext);
+    const [, addAlert] = alertGlobal;
 
 
     useEffect(() => {
@@ -49,10 +54,16 @@ const Signup = () => {
 
         if (fName && lName && email && validatePassword(pswrd)){
 
-            console.log('signing up')
             signUp(fName, lName, email, pswrd, marketing)
-                .then(() =>  history.push('/usersetup'))
-                .catch(err => console.log(err.msg))
+                .then(res => {
+                    console.log(res)
+                    if (res.isSuccess){
+                        history.push('/usersetup')
+                    }else{
+                        addAlert(res.msg, 'error')
+                    }
+                })
+                .catch(err => console.log(err))
 
         }else{
             setTimeout(()=> setSubmited(false), 3000)
@@ -63,7 +74,7 @@ const Signup = () => {
     return (
         <div>
             <Nav>
-                <button className='nav__button'>Login</button>
+                <button className='nav__button' onClick={()=> history.push('/login')}>Login</button>
             </Nav>
             <div className="setup__page">
                 <div className="setup__page__body">

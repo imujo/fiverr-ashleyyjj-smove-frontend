@@ -8,16 +8,18 @@ import Viewings from '../pages/Viewings';
 import Account from '../pages/Account';
 import { FiMenu } from "react-icons/fi";
 import {useHistory} from 'react-router-dom';
+import { fetchUser } from '../functions/authFunctions';
 
 
 
+const Dashboard = () => {
 
-const Dashboard = (props) => {
 
     const { page } = useParams()
     const [menuIsOpen, setMenuIsOpen] = useState(false)
     const menu = useRef()
     const history = useHistory();
+    const [fName, setFName] = useState('')
 
     const isPhone = useMediaQuery({query: '(max-width: 900px)'})
     
@@ -40,9 +42,31 @@ const Dashboard = (props) => {
 
         setTimeout(()=> setMenuIsOpen(false), 50)
     }
+
+    useEffect(() => {
+        fetchUser()
+            .then(user =>  {
+                setFName(user.firstname)
+
+                if (user.movingwith === null){
+                    history.push('/usersetup')
+                }else if (user.ratingoption1 === null){
+                    history.push('/ratingsetup')
+                }
+            })
+
+        
+    }, [history])
     
 
+    const logOut = () => {
+        localStorage.removeItem('jwtToken')
+        localStorage.setItem('isAuth', false)
+        history.push('/signup')
+
+    }
     
+ 
 
 
     return (
@@ -54,7 +78,7 @@ const Dashboard = (props) => {
                         <FiMenu onClick={()=> setMenuIsOpen(true)} style={{cursor: 'pointer'}} />
                     : 
                     <>
-                        <button className='btn btn-outline btn-outline-orange dashboard__nav-button'>My home hub</button>
+                        <button className='btn btn-outline btn-outline-orange dashboard__nav-button' onClick={logOut}>Log out</button>
                         <div className="dashboard__personIcon">JA</div>
                     </>
                 }
@@ -62,7 +86,7 @@ const Dashboard = (props) => {
             <hr className="dashboard__hline"/>
 
             <div className="dashboard__content">
-                <h1 className='dashboard__title'>Welcome back, Jack!</h1>
+                <h1 className='dashboard__title'>Welcome back, {fName}!</h1>
                 <h4 className='dashboard__subtitle'>Let’s get your smove on</h4>
 
                 <div className="dashboard__buttons">

@@ -3,7 +3,7 @@ import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'
 import { useHistory } from "react-router-dom";
 import UserSetupForm from '../components/UserSetupForm';
-import { userSetup } from '../functions/authFunctions';
+import { fetchUser, userSetup } from '../functions/authFunctions';
 
 
 const UserSetup = () => {
@@ -11,7 +11,7 @@ const UserSetup = () => {
     let history = useHistory();
     const [imA, setImA] = useState('')
     const [movingWith, setMovingWith] = useState('')
-    const [budget, setBudget] = useState(0)
+    const [budget, setBudget] = useState('')
 
 
 
@@ -19,8 +19,10 @@ const UserSetup = () => {
 
         if ( imA && budget && movingWith){
             userSetup(imA, movingWith, budget)
-             .then(()=> history.push('/ratingsetup'))
-             .catch(err => console.log(err.msg))
+             .then(msg=> {
+                if (msg.success){ history.push('/ratingsetup') }
+             })
+             .catch(console.log)
         }
     }
 
@@ -36,6 +38,15 @@ const UserSetup = () => {
         }
 
     }, [imA, movingWith, budget])
+
+    useEffect(() => {
+        fetchUser()
+            .then(user => {
+                if (user.movingwith !== null){
+                    history.push('/ratingsetup')
+                }
+            })
+    }, [history])
 
 
     

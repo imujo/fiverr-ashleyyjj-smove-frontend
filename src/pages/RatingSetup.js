@@ -3,23 +3,28 @@ import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'  
 import { useHistory } from "react-router-dom";
 import SelectRatingOptions from '../components/SelectRatingOptions';
-import { ratingSetup } from '../functions/authFunctions';
+import { fetchUser, ratingSetup } from '../functions/authFunctions';
+import { getRatingCategories, getRatingOptions } from '../functions/apiFunctions';
 
 
 const RatingSetup = () => {
 
     let history = useHistory();
 
-    const ratingOptions = ['Onddde', 'Twasdfso', 'Thrasdfee', 'Oasdfne', 'Tasdwo', 'Thdsafree', 'One', 'Two', 'Three']
+    
 
-    const categories = ['Outdoors', 'Indoors', 'Location', 'Size/Layout', 'Cost']
+    
 
-    const [categorySelected, setCategorySelected] = useState('Outdoors')
+    const [categorySelected, setCategorySelected] = useState('Outside')
 
     const [ratingOption1, setRatingOption1] = useState('')
     const [ratingOption2, setRatingOption2] = useState('')
     const [ratingOption3, setRatingOption3] = useState('')
     const [ratingOption4, setRatingOption4] = useState('')
+
+
+    const [ratingOptions, setratingOptions] = useState([])
+    const [ratingCategories, setRatingCategories] = useState([])
 
     const [canContinue, setCanContinue] = useState(false)
 
@@ -75,6 +80,33 @@ const RatingSetup = () => {
         }
     }
 
+    useEffect(() => {
+        fetchUser()
+            .then(user => {
+                if (user.ratingoption1 !== null){
+                    history.push('/')
+                }
+
+                if (user.movingwith === null){
+                    history.push('/usersetup')
+                }
+            })
+        
+        
+        
+        
+    }, [history])
+
+    useEffect(() => {
+        getRatingCategories()
+            .then(categories => setRatingCategories(categories))
+            .catch(console.log)
+
+        getRatingOptions(categorySelected)
+            .then(options => setratingOptions(options))
+            .catch(console.log)
+    }, [categorySelected])
+
     
     
 
@@ -92,7 +124,7 @@ const RatingSetup = () => {
                             <h3 className='setup__heading ratingSetup__label'>Category:</h3>
                             <div className="ratingSetup__categoriesList">
                                 {
-                                    categories.map((category, i)=>{
+                                    ratingCategories.map((category, i)=>{
                                         return (
                                             <button 
                                                 key={i}

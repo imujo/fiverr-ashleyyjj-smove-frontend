@@ -48,7 +48,7 @@ const Viewings = () => {
             },
             {
                 title: "Move to 'made an offer'",
-                newLocation: 'offer_made'
+                newLocation: 'offers'
             },
         ],
         upcomingViewings: [
@@ -102,6 +102,7 @@ const Viewings = () => {
 
 
     useEffect(() => {
+        // console.log(carouselsReloadState)
         getProperties('to_view')
             .then(data => setViewingsProperties(data))
         

@@ -31,6 +31,12 @@
       font-weight: 600;
     }
   }
+
+  &__save {
+    height: 40px;
+    width: 200px;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 900px) {
@@ -63,6 +69,10 @@
       &__label {
         font-size: 1em;
       }
+    }
+
+    &__save {
+      width: 100%;
     }
   }
 }

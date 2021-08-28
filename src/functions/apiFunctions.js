@@ -4,7 +4,13 @@ const api = process.env.REACT_APP_API
 
 export const getProperties = (location) => {
     
-    return fetch(`${api}/api/userproperties/${location}`)
+    return fetch(`${api}/api/userproperties/${location}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
+        }
+    })
         .then(res => res.json())
         .then(data => {console.log('Got properties'); return data.data})
         .catch(err => {console.log('Couldnt get properties'); return null})
@@ -16,7 +22,8 @@ export const getProperty = (websiteUrl) => {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
         },
         body: JSON.stringify({websiteurl: websiteUrl})
     })
@@ -32,7 +39,10 @@ export const getUserRating = (websiteUrl, ratingOption) => {
             websiteurl: websiteUrl,
             ratingoption: ratingOption
         }),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
     })
         .then(response => response.json())
         .then(data=> {console.log('Got rating'); return data.data})
@@ -46,7 +56,10 @@ export const getUserRatings = (websiteUrl) => {
         body: JSON.stringify({
             websiteurl: websiteUrl
         }),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
     })
         .then(response => response.json())
         .then(data=> {console.log('Get ratings'); return data.data})
@@ -61,14 +74,17 @@ export const updateDashboardLocation = (websiteurl, dashboardlocation, reloadCar
             websiteurl: websiteurl,
             dashboardlocation: dashboardlocation
         }),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
         })
         .then(()=> reloadCarousels())
         .then(json => {return json})
         .catch(err => {console.log(err); return false });
 }
 
-export const updateUserPropertyViewingDetails = (websiteurl, viewing_date, viewing_time, viewing_address, reloadCarousels) => {
+export const updateUserPropertyViewingDetails = (websiteurl, viewing_date, viewing_time, viewing_address, dashboardlocation, reloadCarousels) => {
     return fetch(`${api}/api/userproperties/viewnigDetails`, {
         method: "PUT",
         body: JSON.stringify({
@@ -76,8 +92,12 @@ export const updateUserPropertyViewingDetails = (websiteurl, viewing_date, viewi
             viewing_date: viewing_date,
             viewing_time: viewing_time,
             viewing_address: viewing_address,
+            dashboardlocation: dashboardlocation
         }),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
         })
             .then(json => json.json())
             .then(data => {
@@ -90,13 +110,64 @@ export const updateUserPropertyViewingDetails = (websiteurl, viewing_date, viewi
             .catch(err => {console.log(err); return false });
 }
 
+export const deleteUserProperty = (websiteurl, reloadCarousels) => {
+    return fetch(`${api}/api/userproperties`, {
+        method: "DELETE",
+        body: JSON.stringify({
+            websiteurl: websiteurl
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
+        })
+            .then(json => json.json())
+            .then(data => {
+                console.log('Deleted user property')
+                reloadCarousels()
+                return data
+            })
+            .catch(err => {console.log("Couldn't delete user property"); return false });
+}
+
+export const updateUserSettings = (buyertype, movingwith, budget, ratingoption1, ratingoption2, ratingoption3, ratingoption4, email_contact, sms_contact, post_contact) => {
+    return fetch(`${api}/api/user`, {
+        method: "PUT",
+        body: JSON.stringify({
+            buyertype: buyertype,
+            movingwith: movingwith,
+            budget: budget,
+            ratingoption1: ratingoption1,
+            ratingoption2: ratingoption2,
+            ratingoption3: ratingoption3,
+            ratingoption4: ratingoption4,
+            email_contact: email_contact,
+            sms_contact: sms_contact,
+            post_contact: post_contact,
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
+        })
+            .then(json => json.json())
+            .then(data => {
+                console.log('Updated user settings')
+                return data
+            })
+            .catch(err => {console.log(err); return false });
+}
+
 export const getUserPropertyViewingDetails = (websiteUrl) => {
     return fetch(`${api}/api/userproperties/viewnigDetails`, {
         method: "POST",
         body: JSON.stringify({
             websiteurl: websiteUrl
         }),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
     })
         .then(response => response.json())
         .then(data=> {console.log('Get property details'); return data.data})
@@ -110,7 +181,10 @@ export const moveToRatedNeeded = (websiteurl) => {
         body: JSON.stringify({
             websiteurl: websiteurl,
         }),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
         })
             .then(json => json.json())
             .then(data => {return data})
@@ -132,6 +206,7 @@ export const updateRating = (websiteUrl, ratingOption, newRating, reloadCarousel
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
         },
         body: JSON.stringify(data)
     })
@@ -151,7 +226,13 @@ export const updateRating = (websiteUrl, ratingOption, newRating, reloadCarousel
 }
 
 export const getUserRatingOptions = () => {
-    return fetch(`http://localhost:5000/api/user/ratingoptions`)
+    return fetch(`http://localhost:5000/api/user/ratingoptions`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
+        }
+    })
         .then(response => response.json())
         .then(data=> {return data.data})
         .catch(e=> {console.log(e); return false})
@@ -163,9 +244,40 @@ export const updateNote = (websiteUrl, note) => {
     return fetch(`http://localhost:5000/api/userproperties/note`, {
         method: "PUT",
         body: JSON.stringify({ note: note, websiteurl: websiteUrl}),
-        headers: {"Content-type": "application/json; charset=UTF-8"}
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            'Authorization': localStorage.getItem('jwtToken')
+        }
     })
         .then(() => {console.log('Note added'); return }) 
         .catch(err => {console.log("Couldn't add the note"); return null });
 
+}
+
+export const getRatingCategories = () => {
+    
+    return fetch(`${api}/api/ratingcategories`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
+        }
+    })
+        .then(res => res.json())
+        .then(data => {console.log('Got rating categories'); return data.data})
+        .catch(err => {console.log('Couldnt get rating categories'); return null})
+}
+
+export const getRatingOptions = (ratingCategory) => {
+    
+    return fetch(`${api}/api/ratingoptions/${ratingCategory}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
+        }
+    })
+        .then(res => res.json())
+        .then(data => {console.log('Got rating options'); return data.data})
+        .catch(err => {console.log('Couldnt get rating options'); return null})
 }
