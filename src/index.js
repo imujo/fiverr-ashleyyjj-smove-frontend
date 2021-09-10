@@ -5,7 +5,7 @@ import './scss/main.css'
 import { ReloadStateProvider } from './state/ReloadState'
 
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
 } from "react-router-dom";
 
 ReactDOM.render(

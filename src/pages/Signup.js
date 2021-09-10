@@ -48,8 +48,10 @@ const Signup = () => {
 
     }
 
-    const submit = (marketing) => {
+    const submit = (marketing, e) => {
 
+        e.preventDefault()
+        
         setSubmited(true)
 
         if (fName && lName && email && validatePassword(pswrd)){
@@ -169,14 +171,14 @@ const Signup = () => {
                                 className='btn btn-fill btn-fill-orange btn-shadow signup__form__submit' 
                                 type="submit" 
                                 value="Yes, get started now" 
-                                onClick={()=> submit(true)}
+                                onClick={(e)=> submit(true, e)}
                             />
 
                             <input 
                                 className='btn signup__form__submitText' 
                                 type="submit" 
                                 value="No thanks, get started now" 
-                                onClick={()=> submit(false)}
+                                onClick={(e)=> submit(false, e)}
                             />
                         </form>
 
