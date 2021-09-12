@@ -1,7 +1,6 @@
 
 const api = process.env.REACT_APP_API
 
-
 export const getProperties = (location) => {
     
     return fetch(`${api}/api/userproperties/${location}`, {
@@ -226,7 +225,7 @@ export const updateRating = (websiteUrl, ratingOption, newRating, reloadCarousel
 }
 
 export const getUserRatingOptions = () => {
-    return fetch(`http://localhost:5000/api/user/ratingoptions`, {
+    return fetch(`${api}/api/user/ratingoptions`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -241,7 +240,7 @@ export const getUserRatingOptions = () => {
 
 export const updateNote = (websiteUrl, note) => {
 
-    return fetch(`http://localhost:5000/api/userproperties/note`, {
+    return fetch(`${api}/api/userproperties/note`, {
         method: "PUT",
         body: JSON.stringify({ note: note, websiteurl: websiteUrl}),
         headers: {

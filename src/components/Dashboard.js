@@ -9,6 +9,7 @@ import Account from '../pages/Account';
 import { FiMenu } from "react-icons/fi";
 import {useHistory} from 'react-router-dom';
 import { fetchUser } from '../functions/authFunctions';
+import Admin from '../pages/Admin';
 
 
 
@@ -20,6 +21,7 @@ const Dashboard = () => {
     const menu = useRef()
     const history = useHistory();
     const [fName, setFName] = useState('')
+    const [admin, setAdmin] = useState(false)
 
     const isPhone = useMediaQuery({query: '(max-width: 900px)'})
     
@@ -46,6 +48,7 @@ const Dashboard = () => {
     useEffect(() => {
         fetchUser()
             .then(user =>  {
+                setAdmin(user.admin)
                 setFName(user.firstname)
 
                 if (user.movingwith === null){
@@ -111,6 +114,15 @@ const Dashboard = () => {
                     <li className={`dashboard__routes__route ${page === 'account' ? 'dashboard__routes__route-active' : ''}`} onClick={()=> rerout('/account')}>
                         Account
                     </li>
+
+                    {
+                        admin ?
+                        <li className={`dashboard__routes__route ${page === 'admin' ? 'dashboard__routes__route-active' : ''}`} onClick={()=> rerout('/admin')}>
+                            Admin
+                        </li>
+                        : undefined
+                    }
+
                 </ul>
                 {
                     isPhone ? <div className="dashboard__routes__shadow" isopen={`${menuIsOpen}`}></div> : null
@@ -118,9 +130,10 @@ const Dashboard = () => {
           
 
                 
-                { page === 'listings' ? <Listings /> : null }
-                { page === 'viewings' ? <Viewings /> : null }
-                { page === 'account' ? <Account /> : null }
+                { page === 'listings' ? <Listings  /> : null }
+                { page === 'viewings' ? <Viewings  /> : null }
+                { page === 'account' ? <Account  /> : null }
+                { page === 'admin' && admin ? <Admin  /> : null }
                     
                 
 

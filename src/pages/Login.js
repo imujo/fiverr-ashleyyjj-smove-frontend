@@ -19,7 +19,8 @@ const Login = () => {
 
 
 
-    const submit = () => {
+    const submit = (e) => {
+        e.preventDefault()
 
         logIn(email, pswrd)
             .then(res => {
@@ -86,7 +87,7 @@ const Login = () => {
                                 className='btn btn-fill btn-fill-orange btn-shadow signup__form__submit' 
                                 type="submit" 
                                 value="Head to your dashboard" 
-                                onClick={()=> submit(true)}
+                                onClick={(e)=> submit(e)}
                             />
 
                         </form>
