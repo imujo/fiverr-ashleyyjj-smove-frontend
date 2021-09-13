@@ -72,7 +72,7 @@ function Admin() {
                                 <tr className='admin__dataTable__data' key={i}>
                                     {
                                         Object.values(object).map((value, i)=>{
-                                            return <td className='admin__dataTable__data__item' key={i}>{value ? value : '-'}</td>
+                                            return <td className='admin__dataTable__data__item' key={i}>{value ? value.toString() : '-'}</td>
                                         })
                                     }
                                 </tr>

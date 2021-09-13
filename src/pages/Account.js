@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import SelectRatingOptions from '../components/SelectRatingOptions'
 import ToggleSwitch from '../components/ToggleSwitch'
 import UserSetupForm from '../components/UserSetupForm'
 import { updateUserSettings } from '../functions/apiFunctions'
 import { fetchUser } from '../functions/authFunctions'
+import { ReloadStateContext } from '../state/ReloadState'
+
 
 const Account = () => {
 
@@ -19,6 +21,9 @@ const Account = () => {
     const [email, setEmail] = useState(false)
     const [SMS, setSMS] = useState(false)
     const [post, setPost] = useState(false)
+
+    const { alertGlobal } = useContext(ReloadStateContext);
+    const [, addAlert] = alertGlobal;
 
     useEffect(() => {
         fetchUser()
@@ -41,6 +46,8 @@ const Account = () => {
 
     const submit = () => {
         updateUserSettings(imA, movingWith, budget, ratingOption1, ratingOption2, ratingOption3, ratingOption4,email ,SMS ,post)
+            .then((res)=> addAlert(res.details, 'success'))
+            .catch((res)=> addAlert(res.details, 'error'))
     }
     
 
@@ -84,11 +91,11 @@ const Account = () => {
                     Contact Preferences
                     <div className="carousel__title__border"></div>
                 </h2>
-                <h3 className='carousel__subtitle account__section__subtitle'>At smove, we do all the hard work for you. Services such as account and viewing reminders, the latest product news and insights. I agree to have <strong>smove</strong> contact me via:</h3>
+                <h3 className='carousel__subtitle account__section__subtitle'>At smove we do all of the hard work for you. We’ll send you reminders, the latest product news, inights & offers. I agree to have smove contact me via:</h3>
 
                 <ul className='account__managePreferences__list'>
                     <div className="account__managePreferences__list__item">
-                        <label className='account__managePreferences__list__label'>Email</label>
+                        <label className='account__managePreferences__list__label'>Email*</label>
                         <ToggleSwitch setchecked={setEmail} checked={email} />
                     </div>
                     <div className="account__managePreferences__list__item">

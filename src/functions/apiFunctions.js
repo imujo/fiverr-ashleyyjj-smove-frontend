@@ -152,6 +152,7 @@ export const updateUserSettings = (buyertype, movingwith, budget, ratingoption1,
             .then(json => json.json())
             .then(data => {
                 console.log('Updated user settings')
+                console.log(data)
                 return data
             })
             .catch(err => {console.log(err); return false });

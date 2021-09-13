@@ -9,7 +9,7 @@ function Listings() {
         topRated: {
             title: 'Your top rated homes',
             subtitle: 'to sort - ordered highest to lowest',
-            template__title: 'Your top rated homes will appear here!',
+            template__title: 'Your top rated homes will appear here',
             template__subtitle: 'Go & get rating homes on your favourite property websites.',
             home: 'homes'
         },

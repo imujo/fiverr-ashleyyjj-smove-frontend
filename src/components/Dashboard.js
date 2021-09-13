@@ -22,6 +22,7 @@ const Dashboard = () => {
     const history = useHistory();
     const [fName, setFName] = useState('')
     const [admin, setAdmin] = useState(false)
+    const [userInitials, setUserInitials] = useState('')
 
     const isPhone = useMediaQuery({query: '(max-width: 900px)'})
     
@@ -50,6 +51,8 @@ const Dashboard = () => {
             .then(user =>  {
                 setAdmin(user.admin)
                 setFName(user.firstname)
+                const initials = user.firstname[0] + user.lastname[0]
+                setUserInitials(initials)
 
                 if (user.movingwith === null){
                     history.push('/usersetup')
@@ -82,7 +85,7 @@ const Dashboard = () => {
                     : 
                     <>
                         <button className='btn btn-outline btn-outline-orange dashboard__nav-button' onClick={logOut}>Log out</button>
-                        <div className="dashboard__personIcon">JA</div>
+                        <div className="dashboard__personIcon">{userInitials}</div>
                     </>
                 }
             </Nav>
@@ -93,8 +96,9 @@ const Dashboard = () => {
                 <h4 className='dashboard__subtitle'>Let’s get your smove on</h4>
 
                 <div className="dashboard__buttons">
-                    <button className='btn btn-hover btn-fill btn-fill-orange btn-flexible dashboard__buttons__button'>Find ways to rate homes {'>'}</button>
-                    <button className='btn btn-hover btn-outline btn-outline-orange btn-outline-orange-disabled btn-flexible dashboard__buttons__button'>Manage home ratings {'>'}</button>
+                    <a href="http://mysmove.com/how-to-use"><button className='btn btn-hover btn-fill btn-fill-orange btn-flexible dashboard__buttons__button'>Find ways to rate homes {'>'}</button></a>
+                    <a href="account"><button className='btn btn-hover btn-outline btn-outline-orange btn-outline-orange-disabled btn-flexible dashboard__buttons__button'>Manage home ratings {'>'}</button></a>
+                    
                 </div>
 
                 
@@ -138,7 +142,7 @@ const Dashboard = () => {
                 
 
             </div>
-            <div className="dashboard__footer">smove</div>
+            <div className="dashboard__footer" onClick={()=>window.scrollTo(0,0)}>smove</div>
         </main>
     )
 }
