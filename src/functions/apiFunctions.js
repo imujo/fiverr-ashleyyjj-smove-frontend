@@ -1,6 +1,8 @@
 
 const api = process.env.REACT_APP_API
 
+
+
 export const getProperties = (location) => {
     
     return fetch(`${api}/api/userproperties/${location}`, {
@@ -281,3 +283,6 @@ export const getRatingOptions = (ratingCategory) => {
         .then(data => {console.log('Got rating options'); return data.data})
         .catch(err => {console.log('Couldnt get rating options'); return null})
 }
+
+
+

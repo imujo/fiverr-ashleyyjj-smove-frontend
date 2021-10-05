@@ -1,5 +1,6 @@
 const api = process.env.REACT_APP_API
 
+
 export const logIn = (email, password) => {
 
     const data = {
@@ -122,4 +123,18 @@ export const ratingSetup = (ratingoption1, ratingoption2, ratingoption3, ratingo
 
 }
 
+export const deleteUser = ( userid ) => { // FIX
+    
 
+    return fetch(`${process.env.REACT_APP_API}/auth/user/${userid}`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('jwtToken')
+        },
+    })
+        .then(res => res.json())
+        .then(message => {console.log('Deleted user'); return message})
+        .catch  (err => {console.log('There has been an error deleting the user'); return err})
+}

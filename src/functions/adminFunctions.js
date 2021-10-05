@@ -25,3 +25,18 @@ export const getNoOfPages = (table) => {
         .then(data => {console.log('Got users'); return data.data})
         .catch(err => {console.log('Couldnt get users'); return null})
 }
+
+export const getTotal = () => {
+    
+  return fetch(`${api}/api/total`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('jwtToken')
+      }
+  })
+      .then(res => res.json())
+      .then(data => {console.log('Got total'); return data.data})
+      .catch(err => {console.log('Couldnt get total'); return null})
+}
+

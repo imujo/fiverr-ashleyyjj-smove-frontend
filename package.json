@@ -17,12 +17,12 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set REACT_APP_API=http://localhost:5000&& react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "copy": "copy _redirects build\\_redirects",
+    "deploy": "set REACT_APP_API=https://server.mysmove.com&& npm run build && npm run copy && netlify deploy --prod --dir=build"
   },
   "eslintConfig": {
     "extends": [

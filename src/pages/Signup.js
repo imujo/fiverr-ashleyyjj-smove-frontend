@@ -58,7 +58,6 @@ const Signup = () => {
 
             signUp(fName, lName, email, pswrd, marketing)
                 .then(res => {
-                    console.log(res)
                     if (res.isSuccess){
                         history.push('/usersetup')
                     }else{

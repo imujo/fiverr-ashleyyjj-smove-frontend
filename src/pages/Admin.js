@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { getData, getNoOfPages } from '../functions/adminFunctions'
+import { getData, getNoOfPages, getTotal } from '../functions/adminFunctions'
+import { deleteUser } from '../functions/authFunctions'
 
 function Admin() {
 
@@ -7,6 +8,8 @@ function Admin() {
     const [noOfPages, setNoOfPages] = useState([1])
     const [page, setPage] = useState(1)
     const [table, setTable] = useState('users')
+    const [updateState, setUpdateState] = useState(true)
+    const [total, setTotal] = useState([])
 
     useEffect(() => {
         getData(table, page)
@@ -20,12 +23,27 @@ function Admin() {
         
         getNoOfPages(table)
             .then(setNoOfPages)
-    }, [page, table])
+        
+        getTotal().then(setTotal)
+    }, [page, table, updateState])
 
 
 
     return (
         <div className='admin'>
+
+            <ul className='admin__total'>
+                {
+                    total.map((item, i)=>{
+                        return (
+                            <li className="admin__total__item">
+                                <div className="admin__total__item__title">{item.title}</div>
+                                <div className="admin__total__item__number">{item.count}</div>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
 
             <ul className="admin__selection">
                 <li 
@@ -75,10 +93,18 @@ function Admin() {
                                             return <td className='admin__dataTable__data__item' key={i}>{value ? value.toString() : '-'}</td>
                                         })
                                     }
+                                    {
+                                        table === 'users' ?
+                                            <td><button onClick={()=> {deleteUser(object.id); setUpdateState(!updateState)}} className='admin__dataTable__data__deleteButton' >Delete</button></td>
+                                        :
+                                        undefined
+                                    }
                                 </tr>
                             )
                         })
                         }
+
+                        
                     </tbody>
 
 
