@@ -12,6 +12,7 @@ function Admin() {
     const [total, setTotal] = useState([])
 
     useEffect(() => {
+        console.log('reset')
         getData(table, page)
             .then(data => {
                 if (data.length){
@@ -36,7 +37,7 @@ function Admin() {
                 {
                     total.map((item, i)=>{
                         return (
-                            <li className="admin__total__item">
+                            <li className="admin__total__item" key={i}>
                                 <div className="admin__total__item__title">{item.title}</div>
                                 <div className="admin__total__item__number">{item.count}</div>
                             </li>
@@ -95,7 +96,7 @@ function Admin() {
                                     }
                                     {
                                         table === 'users' ?
-                                            <td><button onClick={()=> {deleteUser(object.id); setUpdateState(!updateState)}} className='admin__dataTable__data__deleteButton' >Delete</button></td>
+                                            <td><button onClick={()=> {deleteUser(object.id); setTimeout(()=>setUpdateState(!updateState), 100)}} className='admin__dataTable__data__deleteButton' >Delete</button></td>
                                         :
                                         undefined
                                     }
