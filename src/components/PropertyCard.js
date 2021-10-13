@@ -8,7 +8,7 @@ import CardViewings from './CardViewings';
 import { deleteUserProperty, getProperty, updateNote } from '../functions/apiFunctions';
 import { calcVsBudget, commify } from '../functions/otherFunctions'
 import { ReloadStateContext } from '../state/ReloadState'
-
+import ReactGA from 'react-ga'
 
 
 
@@ -27,6 +27,16 @@ const PropertyCard = ({note, websiteurl, dashboardlocation, viewings, manageopti
     const [, reloadCarousels] = reloadCarouselsGlobal
 
     const initalRender = useRef(true)
+
+
+    const reactGaEvent = (event) => {
+        
+        ReactGA.event({
+            category: 'Property Cards',
+            action: `PC_${event}`
+        })
+
+    }
 
 
     
@@ -97,7 +107,7 @@ const PropertyCard = ({note, websiteurl, dashboardlocation, viewings, manageopti
                             propertyCard__navigation__item
                             ${currentPage === 'Viewings' ? 'propertyCard__navigation__item-active' : ''}
                         `}
-                        onClick={()=> setCurrentPage('Viewings')}
+                        onClick={()=> {reactGaEvent('Viewings'); setCurrentPage('Viewings')}}
                     >Viewings</h3>
                     
                     : null
@@ -107,14 +117,14 @@ const PropertyCard = ({note, websiteurl, dashboardlocation, viewings, manageopti
                         propertyCard__navigation__item
                         ${currentPage === 'Ratings' ? 'propertyCard__navigation__item-active' : ''}
                     `}
-                    onClick={()=> setCurrentPage('Ratings')}
+                    onClick={()=> {reactGaEvent('Ratings'); setCurrentPage('Ratings')}}
                 >Ratings</h3>
                 <h3 
                     className={`
                         propertyCard__navigation__item
                         ${currentPage === 'Notes' ? 'propertyCard__navigation__item-active' : ''}
                     `}
-                    onClick={()=> setCurrentPage('Notes')}
+                    onClick={()=> {reactGaEvent('Notes'); setCurrentPage('Notes')}}
                 >Notes</h3>
             </div>
 
@@ -136,7 +146,7 @@ const PropertyCard = ({note, websiteurl, dashboardlocation, viewings, manageopti
                 <a href={propertyInfo.websiteurl} target="_blank" rel="noreferrer">
                     <button className="propertyCard__organize__button propertyCard__organize__button-wide">See listing</button>
                 </a>
-                <button className="propertyCard__organize__button propertyCard__organize__button-narrow" onClick={()=> deleteUserProperty(websiteurl, reloadCarousels)}>X</button>
+                <button className="propertyCard__organize__button propertyCard__organize__button-narrow" onClick={()=> {reactGaEvent('Dismiss'); deleteUserProperty(websiteurl, reloadCarousels)}}>X</button>
                 <button 
                     className="propertyCard__organize__button propertyCard__organize__button-wide"
                     onClick={()=> setIsManagedOpen(!isManagedOpen)}

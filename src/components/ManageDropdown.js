@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useContext } from 'react'
 import { updateDashboardLocation } from '../functions/apiFunctions'
 import { ReloadStateContext } from '../state/ReloadState'
+import ReactGA from 'react-ga'
 
 
 const ManageDropdown = ({ open, setismanagedopen, options, websiteurl }) => {
@@ -9,6 +10,16 @@ const ManageDropdown = ({ open, setismanagedopen, options, websiteurl }) => {
 
     const { reloadCarouselsGlobal } = useContext(ReloadStateContext);
     const [,reloadCarousels] = reloadCarouselsGlobal;
+
+    const reactGaEvent = (event) => {
+        
+      ReactGA.event({
+          category: 'Property Cards',
+          action: `PC_${event}`
+      })
+
+  }
+
 
 
     useEffect(() => {
@@ -27,7 +38,8 @@ const ManageDropdown = ({ open, setismanagedopen, options, websiteurl }) => {
         <ul className={`manageDropdown dropdown ${open ? 'dropdown-open' : ''}`} ref={dropdown}>
           {
             options.map((option, i)=>{
-              return <li className="manageDropdown__item" key={i} onClick={()=> updateDashboardLocation(websiteurl, option.newLocation, reloadCarousels)}>{option.title}</li>            
+              console.log(option.ga)
+              return <li className="manageDropdown__item" key={i} onClick={()=> {reactGaEvent(option.ga); updateDashboardLocation(websiteurl, option.newLocation, reloadCarousels)}}>{option.title}</li>            
 
             })
           }

@@ -5,7 +5,7 @@ import UserSetupForm from '../components/UserSetupForm'
 import { updateUserSettings } from '../functions/apiFunctions'
 import { fetchUser } from '../functions/authFunctions'
 import { ReloadStateContext } from '../state/ReloadState'
-
+import ReactGA from 'react-ga'
 
 const Account = () => {
 
@@ -24,6 +24,15 @@ const Account = () => {
 
     const { alertGlobal } = useContext(ReloadStateContext);
     const [, addAlert] = alertGlobal;
+
+    const reactGaEvent = (event) => {
+        
+        ReactGA.event({
+            category: 'Account',
+            action: `ACC_${event}`
+        })
+
+    }
 
     useEffect(() => {
         fetchUser()
@@ -45,6 +54,9 @@ const Account = () => {
     }, [])
 
     const submit = () => {
+        console.log('submit')
+        reactGaEvent('save')
+
         updateUserSettings(imA, movingWith, budget, ratingOption1, ratingOption2, ratingOption3, ratingOption4,email ,SMS ,post)
             .then((res)=> addAlert(res.details, 'success'))
             .catch((res)=> addAlert(res.details, 'error'))

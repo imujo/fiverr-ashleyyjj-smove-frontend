@@ -4,6 +4,7 @@ import SetupSidebar from '../components/SetupSidebar'
 import { useHistory } from "react-router-dom";
 import { signUp } from '../functions/authFunctions'
 import { ReloadStateContext } from '../state/ReloadState'
+import ReactGA from 'react-ga';
 
 
 const Signup = () => {
@@ -60,6 +61,19 @@ const Signup = () => {
                 .then(res => {
                     if (res.isSuccess){
                         history.push('/usersetup')
+
+                        if (marketing){
+                            ReactGA.event({
+                                category: 'Signup Jurney',
+                                action: 'SU1_StartOptIn'
+                              });
+                        }else{
+                            ReactGA.event({
+                                category: 'Signup Jurney',
+                                action: 'SU1_StartOptOut'
+                            })
+                        }
+
                     }else{
                         addAlert(res.msg, 'error')
                     }

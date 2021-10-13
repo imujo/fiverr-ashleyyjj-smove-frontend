@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { getUserPropertyViewingDetails, updateDashboardLocation, updateUserPropertyViewingDetails } from '../functions/apiFunctions'
 import { calcDateDayDifference } from '../functions/otherFunctions';
 import { ReloadStateContext } from '../state/ReloadState'
-
+import ReactGA from 'react-ga'
 
 
 const CardViewings = ({ websiteurl, dashboardlocation, daystogo, setdaystogo }) => {
@@ -27,9 +27,15 @@ const CardViewings = ({ websiteurl, dashboardlocation, daystogo, setdaystogo }) 
     }, [websiteurl])
 
     useEffect(() => {
-
+    
 
         var timeout = setTimeout(()=> {
+
+            ReactGA.event({
+                category: 'Property Cards',
+                action: 'PC_Viewing_details'
+            })            
+
             updateUserPropertyViewingDetails(websiteurl, date, time, address, dashboardlocation, reloadCarousels)
                 .then(()=> {
                     getUserPropertyViewingDetails(websiteurl)

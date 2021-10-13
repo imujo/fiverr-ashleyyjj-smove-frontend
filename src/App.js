@@ -13,13 +13,18 @@ import PrivateRoute from "./functions/PrivateRoute";
 import Login from './pages/Login'
 import { ReloadStateContext } from './state/ReloadState'
 import { useContext } from "react";
+import useGaTracker from "./functions/useGaTracker";
 
 
 function App() {
-
-
+  
+  
   const { alertGlobal } = useContext(ReloadStateContext);
   const [alert,] = alertGlobal;
+
+  useGaTracker()
+  
+  
 
   return (
 

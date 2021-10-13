@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import SelectRatingOptions from '../components/SelectRatingOptions';
 import { fetchUser, ratingSetup } from '../functions/authFunctions';
 import { getRatingCategories, getRatingOptions } from '../functions/apiFunctions';
-
+import ReactGA from 'react-ga'
 
 const RatingSetup = () => {
 
@@ -71,9 +71,13 @@ const RatingSetup = () => {
     
     const submit = () => {
 
-        console.log('submit')
-
         if ( ratingOption1 && ratingOption2 && ratingOption3 && ratingOption4){
+
+            ReactGA.event({
+                category: 'Signup Jurney',
+                action: 'SU3_Finish'
+            })
+
             ratingSetup(ratingOption1, ratingOption2, ratingOption3, ratingOption4)
                 .then(()=> history.push('/setupcongrats'))
                 .catch((err)=> console.log(err))

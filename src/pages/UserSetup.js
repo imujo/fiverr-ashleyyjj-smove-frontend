@@ -4,7 +4,7 @@ import SetupSidebar from '../components/SetupSidebar'
 import { useHistory } from "react-router-dom";
 import UserSetupForm from '../components/UserSetupForm';
 import { fetchUser, userSetup } from '../functions/authFunctions';
-
+import ReactGA from 'react-ga'
 
 const UserSetup = () => {
 
@@ -18,6 +18,11 @@ const UserSetup = () => {
     const submit = () => {
 
         if ( imA && budget && movingWith){
+            ReactGA.event({
+                category: 'Signup Jurney',
+                action: 'SU2_Prefs'
+            })
+
             userSetup(imA, movingWith, budget)
              .then(msg=> {
                 if (msg.success){ history.push('/ratingsetup') }

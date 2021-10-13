@@ -40,53 +40,64 @@ const Viewings = () => {
         toView: [
             {
                 title: "Move to 'think about' list",
-                newLocation: 'think_about'
+                newLocation: 'think_about',
+                ga: 'Move_to_tb'
             },
             {
                 title: "Move to 'already viewed'",
-                newLocation: 'viewed'
+                newLocation: 'viewed',
+                ga: 'Move_to_av'
             },
             {
                 title: "Move to 'made an offer'",
-                newLocation: 'offers'
+                newLocation: 'offers',
+                ga: 'Move_to_mo'
             },
         ],
         upcomingViewings: [
             {
                 title: "Move to 'think about' list",
-                newLocation: 'think_about'
+                newLocation: 'think_about',
+                ga: 'Move_to_tb'
             },
             {
                 title: "Move to 'already viewed'",
-                newLocation: 'viewed'
+                newLocation: 'viewed',
+                ga: 'Move_to_av'
             },
             {
                 title: "Move to 'made an offer'",
-                newLocation: 'offer_made'
+                newLocation: 'offer_made',
+                ga: 'Move_to_mo'
             },
         ],
         viewed: [
             {
                 title: "Move to 'think about' list",
-                newLocation: 'think_about'
+                newLocation: 'think_about',
+                ga: 'Move_to_tb'
             },
             {
                 title: "Book another viewing",
-                newLocation: 'to_view'
+                newLocation: 'to_view',
+                ga: 'Book_another_viewing'
             },
             {
                 title: "Move to 'made an offer'",
-                newLocation: 'offers'
+                newLocation: 'offers',
+                ga: 'Move_to_mo'
             },
         ],
         offers: [
             {
                 title: "Move to 'think about' list",
-                newLocation: 'think_about'
+                newLocation: 'think_about',
+                ga: 'Move_to_tb'
             },
             {
                 title: "Book a viewing",
-                newLocation: 'to_view'
+                newLocation: 'to_view',
+                ga: 'Book_another_viewing'
             }
         ],
     }

@@ -3,6 +3,8 @@ import Carousel from '../components/Carousel'
 import { getProperties } from '../functions/apiFunctions'
 import { ReloadStateContext } from '../state/ReloadState'
 
+
+
 function Listings() {
 
     const templateText ={
@@ -33,23 +35,27 @@ function Listings() {
         topRated: [
             {
                 title: "Move to 'think about' list",
-                newLocation: 'think_about'
+                newLocation: 'think_about',
+                ga: 'Move_to_tb'
             },
             {
                 title: "Move to 'viewings' list",
-                newLocation: 'to_view'
+                newLocation: 'to_view',
+                ga: 'Move_to_vl'
             },
         ],
         thinkAbout: [
             {
                 title: "Move to 'viewings' list",
-                newLocation: 'to_view'
+                newLocation: 'to_view',
+                ga: 'Move_to_vl'
             },
         ],
         unrated: [
             {
                 title: "Move to 'think about' list",
-                newLocation: 'think_about'
+                newLocation: 'think_about',
+                ga: 'Move_to_tb'
             },
         ]
     }
@@ -73,6 +79,7 @@ function Listings() {
             .then(data => setThinkAboutProperties(data))
 
     }, [carouselsReloadState])
+
 
     return (
         <div className='listings'>
