@@ -90,7 +90,7 @@
     &__submit {
       margin: 0 auto;
       margin-top: 40px;
-      margin-bottom: 20px;
+      margin-bottom: 35px;
       width: 315px;
       height: 45px;
     }
@@ -98,6 +98,11 @@
     &__submitText {
       color: $blue;
       font-size: 1em;
+      text-decoration: underline;
+    }
+
+    &__resetPassword {
+      color: $blue;
       text-decoration: underline;
     }
   }

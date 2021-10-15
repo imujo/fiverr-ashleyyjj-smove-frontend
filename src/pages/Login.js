@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import Nav from '../components/Nav'
 import SetupSidebar from '../components/SetupSidebar'
 import { useHistory } from "react-router-dom";
-import { logIn } from '../functions/authFunctions'
+import { logIn, reqPasswordReset } from '../functions/authFunctions'
 import { ReloadStateContext } from '../state/ReloadState'
 
 
@@ -33,6 +33,20 @@ const Login = () => {
             .catch(err => console.log(err))
 
     }
+
+    const forgotPassword = (e) => {
+        e.preventDefault()
+
+        const emailValid = email.length > 0 && email.includes('@')
+        
+        if (!emailValid) { 
+            return addAlert('The email is not valid. To reset your password, enter a valid email and click on the "Reset password" link', 'error')
+        }
+
+        if (reqPasswordReset(email)) { addAlert('Reset password link is sent to your email', 'success') }
+        else ( addAlert('There has been an error sending your reset email', 'error') )
+    }
+    
     
 
     return (
@@ -67,19 +81,21 @@ const Login = () => {
                                     onChange={e=> setEmail(e.target.value)}
                                 />
                             </div>
-                                <div className={`signup__form__item signup__form__item`}>
-                                    <label 
-                                        htmlFor="password" 
-                                        className='signup__form__label'
-                                    >Password</label>
-                                    <input 
-                                        type="password" 
-                                        id='password' 
-                                        className='signup__form__input' 
-                                        value={pswrd}
-                                        onChange={e=> setPswrd(e.target.value)}
-                                    />
-                                </div>
+                            <div className={`signup__form__item signup__form__item`}>
+                                <label 
+                                    htmlFor="password" 
+                                    className='signup__form__label'
+                                >Password</label>
+                                <input 
+                                    type="password" 
+                                    id='password' 
+                                    className='signup__form__input' 
+                                    value={pswrd}
+                                    onChange={e=> setPswrd(e.target.value)}
+                                />
+                            </div>
+
+                            
                             
                             
 
@@ -90,7 +106,11 @@ const Login = () => {
                                 onClick={(e)=> submit(e)}
                             />
 
+                            <button className='signup__form__resetPassword' onClick={e => forgotPassword(e)} > Reset password - type in your email and click on this link </button>
+
+                            
                         </form>
+
 
 
 

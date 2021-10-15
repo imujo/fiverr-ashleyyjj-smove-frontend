@@ -14,6 +14,7 @@ import Login from './pages/Login'
 import { ReloadStateContext } from './state/ReloadState'
 import { useContext } from "react";
 import useGaTracker from "./functions/useGaTracker";
+import PasswordReset from "./pages/PasswordReset";
 
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
       <Route path='/signup' component={Signup} />
 
       <Route path='/login' component={Login}/>
+
+      <Route path='/passwordReset' component={PasswordReset}/>
 
       <PrivateRoute path='/usersetup' component={UserSetup} />
 

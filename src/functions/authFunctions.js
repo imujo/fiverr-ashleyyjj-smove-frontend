@@ -138,3 +138,41 @@ export const deleteUser = ( userid ) => { // FIX
         .then(message => {console.log('Deleted user'); return message})
         .catch  (err => {console.log('There has been an error deleting the user'); return err})
 }
+
+export const reqPasswordReset = ( email ) => {
+    
+
+    return fetch(`${process.env.REACT_APP_API}/auth/req-pswrd-reset`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: email
+        })
+    })
+        .then(res => res.json())
+        .then(res => {console.log('Requested password reset'); return res.isSuccess})
+        .catch  (err => {console.log('There has been an error requesting password reset'); return false})
+}
+
+export const passwordReset = ( userId, reset_token, password ) => {
+    
+
+    return fetch(`${process.env.REACT_APP_API}/auth/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userId: userId,
+            reset_token: reset_token,
+            password: password
+        })
+    })
+        .then(res => res.json())
+        .then(res => {console.log('Reset password'); return res.isSuccess})
+        .catch  (err => {console.log('There has been an error reseting password'); return false})
+}
